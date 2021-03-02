@@ -1,3 +1,8 @@
+
+## 重要的文档
+- [协调](https://zh-hans.reactjs.org/docs/reconciliation.html): 算法实现
+
+## 文档笔记
 JSX也是一种表达式
 组件的状态名，应以组件自身的角度命名，不应该依赖调用者。
 如果一部分 UI 足够复杂或组件可被多次使用，那么他应该被独立成组件
@@ -13,7 +18,7 @@ React 是自上而下的单向数据流。
 多个组件需要反映相同的变化数据，应该将共享状态提升到最近的共同父组件中去。
 在 React 应用中，任何可变数据应当只有一个相对应的唯一“数据源”。
 📌**组件可以作为参数传递给子组件**
-❓“特殊”组件可以通过 props 定制并渲染“一般”组件。
+[特例关系](https://zh-hans.reactjs.org/docs/composition-vs-inheritance.html#specialization)：“特殊”组件可以通过 props 定制并渲染“一般”组件。
 React中不会用到继承，都是组合。
 使用 `<React.Fragment>` 或 `<>` 可设置一个空的包含组件。
 
@@ -24,11 +29,11 @@ HOC 不需要关心数据的使用方式或原因，而被包装组件也不需�
 HOC 是一种基于 React 的组合特性而形成的设计模式。
 
 **性能优化：**
-- ❓生产环境打包、使用 Brunch、envify、uglifyify、terser 进行打包。
-- 📌对长列表使用虚拟滚动器。
+- 使用Create React App，生产环境打包、使用 Brunch、envify、uglifyify、terser 进行打包。
+- 对长列表使用虚拟滚动器。
 - 📌在特定情况下，在 `shouldComponentUpdate` 生命周期返回false进行拦截，使其不进行render。
 - 工具：[使用](https://zh-hans.reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab)React的Chrome插件可以监控组件渲染的时机，用于进行性能优化。
-❓可以使用 React.PureComponent 替代手动的 shouldComponentUpdate 生命周期渲染拦截。该对比使用浅比较
+可以使用 React.PureComponent 替代手动的 shouldComponentUpdate 生命周期渲染拦截。该对比使用浅比较
 
 
 因为JSX会被编译为 `React.createElement`，所以必须在文件头部引入 `React` 。
@@ -56,23 +61,25 @@ Ref 不仅可以传递 dom，可以传递其他数据（优先使用状态）。
 - 在某一时间节点调用 React 的 render() 方法，会创建一棵由 React 元素组成的树。在下一次 state 或 props 更新时，相同的 render() 方法会返回一棵不同的树。React 需要基于这两棵树之间的差别来判断如何有效率的更新 UI 以保证当前 UI 与最新的树保持同步。
 - 因为算法复杂度的问题，react 设计了一套 O(n) 复杂度的算法，这个算法有两个前提。
     - 两个不同类型的元素会产生出不同的树
-    - 开发者可以通过 key prop 来暗示哪些子元素在不同的渲染下能保持稳定
+    - 开发者可以通过 key 来暗示哪些子元素在不同的渲染下能保持稳定
 
 不同类型的元素，即使子元素是完全一样的，在dom更换时，子元素仍然会重新渲染。所以应该尽量避免这种情况。
-❓渲染逻辑
-1、对比同一元素，尽可能的最小化更新该元素的属性。
-2、对比同类型的组件，组件实例不变，仅传入当前状态的 props ，然后调用该实例的 componentWillReceiveProps() 和 componentWillUpdate() 方法。在 render() 时进行diff的计算，并根据计算更新 dom。
-
-对子节点进行递归，key 的作用体现出来，key 标记了数据与某个 dom 节点的对应关系。使得diff能够更精确的对比，dom 更新更精确的最小化。
+渲染逻辑
+1、对比不同类型的元素时，React 会拆卸原有的树并且建立起新的树。
+2、对比同一元素，尽可能的最小化更新该元素的属性。
+3、对比同类型的组件，组件实例不变，仅传入当前状态的 props，然后调用该实例的 componentWillReceiveProps() 和 componentWillUpdate() 方法。在 render() 时进行diff的计算，并根据计算更新 dom。=
+4、对没有使用 key 的子节点进行递归时，对变化前后的两个 dom 树的值逐个比较，在最后插入元素开销较小，在开始插入元素，开销最大。（有点像数组）
+5、对子节点进行递归，key 的作用体现出来，key 标记了数据与某个 dom 节点的对应关系。使得diff能够更精确的对比，dom 更新更精确的最小化。
 
 
 **render prop**
-❓术语 “render prop” 是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术。
+术语 “render prop” 是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术。
 使用 Render Props 来解决横切关注点（Cross-Cutting Concerns）
 任何被用于告知组件需要渲染什么内容的函数 prop 在技术上都可以被称为 “render prop”.
 Render Props 是一种实现方式，给组件传入一个函数，该函数在组件内部执行，返回JSX，该组件中封装了方法，状态，其中状态可以返回给函数。这就相当于一个完整的组件，组件内部的一部分内容你可以自己定义，我会给你一些数据。不使用组件参数，使用子元素同样能实现该功能。
 
-❓可以使用`<React.StrictMode>`开启严格模式，用于检查过时 API、ref 副作用等等问题。
+
+可以使用`<React.StrictMode>`开启严格模式，用于检查过时 API、ref 副作用等等问题。
 如果你不介意代码美观性，并且希望快速编写代码，使用非受控组件往往可以减少你的代码量。否则，你应该使用受控组件。
 
 
@@ -88,3 +95,6 @@ Render Props 是一种实现方式，给组件传入一个函数，该函数在�
 - style，修改了默认行为，React 会自动添加 ”px” 后缀到内联样式为数字的属性后。
 - value 为受控值，非受控组件使用 defaultValue 为表单元素设置默认值。
 - textarea 内的值使用 value 属性替代
+
+## Demo
+在另一个项目：
