@@ -1,6 +1,9 @@
+---
+sidebar: auto
+lang: zh-hans
+---
 
-
-## React
+# React API
 ### React.Component
 如需定义 class 组件，需要继承 React.Component。
 在 React.Component 的子类中有个必须定义的 render() 函数。
