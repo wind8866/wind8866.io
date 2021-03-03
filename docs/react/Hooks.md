@@ -19,6 +19,7 @@
 与 componentDidMount 或 componentDidUpdate 不同，useEffect 是异步执行的，想要同步执行（会阻止DOM渲染），使用 useLayoutEffect。
 使用多个 Effect 可以实现关注点分离，使相关代码放在一块。
 使用 useEffect 会在调用一个新的 effect 之前对前一个 effect 进行清理。这与 一般的 class 的行为不一致，effect 相当于在 componentDidMount 绑定，componentDidUpdate 时卸载再绑定，componentWillUnmount 时卸载。一般的 class 少了中间过程。
+自定义 Hook 是一个函数，其名称以 “use” 开头，函数内部可以调用其他的 Hook。 
 
 ### 实例
 ```jsx
