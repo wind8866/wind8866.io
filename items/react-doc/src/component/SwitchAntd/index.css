@@ -1,0 +1,91 @@
+.ant-switch {
+  margin: 0;
+  padding: 0;
+  color: rgba(0,0,0,.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  position: relative;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  min-width: 44px;
+  height: 22px;
+  line-height: 22px;
+  vertical-align: middle;
+  background-color: rgba(0,0,0,.25);
+  border: 0;
+  border-radius: 100px;
+  cursor: pointer;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
+.ant-switch-checked {
+  background-color: #1890ff;
+}
+.ant-switch-handle {
+  position: absolute;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 100%;
+}
+.ant-switch-checked .ant-switch-handle{
+  left: calc(100% - 20px);
+}
+.ant-disabled {
+  cursor: not-allowed;
+  opacity: .4;
+}
+.ant-switch-inner {
+  display: block;
+  margin: 0 7px 0 25px;
+  color: #fff;
+  font-size: 12px;
+  -webkit-transition: margin .2s;
+  transition: margin .2s;
+}
+.ant-switch-checked .ant-switch-inner {
+  margin: 0 25px 0 7px;
+}
+.ant-switch-small {
+  min-width: 28px;
+  height: 16px;
+  line-height: 16px;
+}
+.ant-switch-small.ant-switch-checked .ant-switch-handle {
+  left: calc(100% - 14px);
+}
+.ant-switch-small .ant-switch-handle {
+  width: 12px;
+  height: 12px;
+}
+.ant-anticon-spin, .ant-anticon-spin:before {
+  display: inline-block;
+  -webkit-animation: loadingCircle 1s linear infinite;
+  animation: loadingCircle 1s linear infinite;
+}
+@keyframes loadingCircle {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.anticon>* {
+  line-height: 1;
+}
+.ant-switch-checked .ant-switch-loading-icon {
+  color: #1890ff;
+}
