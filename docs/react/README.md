@@ -1,6 +1,10 @@
 # 文档笔记
+
+# 实例代码
+/items/react-doc
 ## 重要的文档
 - [协调](https://zh-hans.reactjs.org/docs/reconciliation.html): 算法实现
+- [Hook 规则](https://zh-hans.reactjs.org/docs/hooks-rules.html)
 
 ## 文档笔记
 JSX也是一种表达式

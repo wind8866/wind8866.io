@@ -1,8 +1,3 @@
----
-sidebar: auto
-lang: zh-hans
----
-
 # React API
 ### React.Component
 如需定义 class 组件，需要继承 React.Component。
