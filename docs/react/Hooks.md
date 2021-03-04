@@ -1,9 +1,5 @@
 # Hooks
 
-## TODO
-- 视频介绍 90 分钟
-- [传递给 useEffect 的函数在每次渲染中都会有所不同，这是刻意为之的。](https://zh-hans.reactjs.org/docs/hooks-effect.html#detailed-explanation)
-
 ### Hooks 解决了什么问题
 - 组件间复用状态逻辑
 - 逻辑复杂时相关代码被拆分到不同的地方使得代码难以理解
@@ -44,3 +40,13 @@ const count = () => {
   </div>);
 }
 ```
+
+### API
+#### useState
+`const [state, setState] = useState(initialState);`
+setCount可以只传入值或者传入一个函数。
+useState 不会自动合并更新对象。
+initialState 参数只会在组件的初始渲染中起作用，后续渲染时会被忽略，可传入值或者函数。
+React 使用 Object.is 比较算法 来比较 state。
+
+#### useEffect

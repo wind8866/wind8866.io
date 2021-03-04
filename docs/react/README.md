@@ -2,9 +2,6 @@
 
 # 实例代码
 /items/react-doc
-## 重要的文档
-- [协调](https://zh-hans.reactjs.org/docs/reconciliation.html): 算法实现
-- [Hook 规则](https://zh-hans.reactjs.org/docs/hooks-rules.html)
 
 ## 文档笔记
 JSX也是一种表达式
@@ -85,9 +82,9 @@ Render Props 是一种实现方式，给组件传入一个函数，该函数在�
 
 可以使用`<React.StrictMode>`开启严格模式，用于检查过时 API、ref 副作用等等问题。
 如果你不介意代码美观性，并且希望快速编写代码，使用非受控组件往往可以减少你的代码量。否则，你应该使用受控组件。
+react 中的事件都是在冒泡阶段触发的，如需注册捕获阶段的事件处理函数，则应为事件名添加 Capture。例如，处理捕获阶段的点击事件请使用 onClickCapture，而不是 onClick。
 
-
-**react 中的替代：**
+[**react 中的替代：**](https://zh-hans.reactjs.org/docs/dom-elements.html)
 在 React 中，所有的 DOM 特性和属性（包括事件处理）都应该是小驼峰命名的方式。例外的情况是 aria-* 以及 data-* 属性，一律使用小写字母命名。
 特殊：
 - checkbox 受控 checkbox，defaultChecked 非受控默认值
