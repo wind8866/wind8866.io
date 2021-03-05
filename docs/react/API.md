@@ -83,6 +83,8 @@ this.props.children是一个特殊的props属性
 React.memo 为高阶组件。
 React.memo 仅检查 props 变更。
 此方法仅作为性能优化的方式而存在。但请不要依赖它来“阻止”渲染，因为这会产生 bug。
+使用常见见[我该如何实现 shouldComponentUpdate?](https://zh-hans.reactjs.org/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate)
+React.memo 等效于 PureComponent，但它只比较 props。
 
 ### React.createElement()
 创建并返回指定的React元素。
