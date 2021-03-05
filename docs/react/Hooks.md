@@ -48,5 +48,49 @@ setCount可以只传入值或者传入一个函数。
 useState 不会自动合并更新对象。
 initialState 参数只会在组件的初始渲染中起作用，后续渲染时会被忽略，可传入值或者函数。
 React 使用 Object.is 比较算法 来比较 state。
+如果传入的 state 不变（使用 `Object.is` 比较），React 将跳过子组件的渲染及 effect 的执行。
+
+**取代了什么？**
+取代了之前使用 class 组件的一整套状态声明、初始化、更新
 
 #### useEffect
+默认情况下 useEffect 会在每次重新渲染后（componentDidMount、componentDidUpdate）执行。
+如果传入一个空数组，则只在 componentDidMount 生命周期内执行。
+如果传入一个有值的数组，则会在数组内任意一元素改变后执行 useEffect。
+在 useEffect 内返回函数，在每次执行该 effect 前会执行，主要用于取消订阅，解除事件绑定，防止内存泄漏。
+useEffect 与 componentDidMount 或 componentDidUpdate 还是有些差异的，传给 useEffect 的函数会延迟调用。如果想在重新渲染后立即调用，使用 useLayoutEffect。
+
+#### useContext
+接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值。
+调用了 useContext 的组件总会在 context 值变化时重新渲染。
+TODO
+
+#### useLayoutEffect
+与 useEffect 相同，但它会在所有的 DOM 变更之后同步调用 effect。可以使用它来读取 DOM 布局并同步触发重渲染。
+
+
+#### useMemo
+该函数是一个辅助函数，用于性能优化
+useMemo 可以记忆接收一个函数和一个数组，返回一个函数的返回值。多次传入相同的数组，则不会运行函数而是返回已经缓存的值。
+注意传入的函数中不要执行副作用。
+你可以把 useMemo 作为性能优化的手段，但不要把它当成语义上的保证。
+一种非常有用的做法是根据某些值的变化渲染子组件：`const child1 = useMemo(() => <Child1 a={a} />, [a]);`
+参见：
+- [如何记忆计算结果？](https://zh-hans.reactjs.org/docs/hooks-faq.html#how-to-memoize-calculations)
+- [Memoization](https://en.wikipedia.org/wiki/Memoization)
+
+#### 看不懂
+- [ ] TODO
+**useReducer**
+**useCallback**
+useImperativeHandle
+useDebugValue
+
+
+- [useReducer 代替 Redux 小案例](https://zhuanlan.zhihu.com/p/262953991)
+- [使用 React Hooks 代替 Redux](https://fed.taobao.org/blog/2019/05/17/use-the-react-hooks-instead-of-the-redux/)
+- [使用 React Hooks 代替 Redux](https://zhuanlan.zhihu.com/p/66020264)
+- [彻底理解 React hook useCallback和useMemo的区别](https://juejin.cn/post/6844904032113278990)
+- [useCallback使用场景](https://github.com/xianzou/blog/issues/26)
+- [你不知道的 useCallback](https://segmentfault.com/a/1190000020108840)
+- [如何从 useCallback 读取一个经常变化的值？](https://zh-hans.reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback)
