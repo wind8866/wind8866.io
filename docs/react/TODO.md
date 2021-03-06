@@ -2,7 +2,9 @@
 
 ## 待办
 - [ ] 看完 《Hooks API 索引》《Hooks FAQ》
-- [ ] 
+- [ ] 整理清楚之前学习的代码
+- [ ] 尝试整理xmind
+- [ ] todo list 写单元测试
 
 # TODO List
  
@@ -18,6 +20,10 @@
 - 自定义 Hook✅
 - Hook API 索引
 - Hooks FAQ
+- 总结性能优化
+  
+**重点**
+- 自定义 Hooks 的 reducer 思想可以创建自己的redux
 
 ## 问题
 ### 现在
@@ -40,11 +46,14 @@
 - [ ] 性能优化会考虑哪些方面
 - [ ] 实现一个 hooks 的 context
 - [ ] redux 是怎样通过 context 实现的，是不是只用在了绑定组件的时候（`context(store)(props)`），这么想的原因是状态管理器只管状态，状态更新后就立即更新是需要订阅的。
-- [ ] React.memo 的使用场景（可参考 antd）
-- [ ] [传递给 useEffect 的函数在每次渲染中都会有所不同，这是刻意为之的。](https://zh-hans.reactjs.org/docs/hooks-effect.html#detailed-explanation)
-
-
 ## 文档需要看
+- [ ] hook API 索引
+- [ ] Hooks FAQ
+- [ ] React API
+- [ ] 高阶组件
+
+- [ ] [基于路由的代码分割](https://zh-hans.reactjs.org/docs/code-splitting.html#error-boundaries)
+- [ ] [在高阶组件中转发 refs](https://zh-hans.reactjs.org/docs/forwarding-refs.html)
 - [ ] [高阶组件](https://zh-hans.reactjs.org/docs/higher-order-components.html#use-hocs-for-crossing-cutting-concerns)
 - [ ] [为什么我们要写 super(props) ？](https://overreacted.io/zh-hans/why-do-we-write-super-props/)
 
@@ -56,3 +65,6 @@
 - [ ] [深入：为什么不直接更新 this.state？](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 - [ ] [深入学习：何时以及为什么 setState() 会批量执行？](https://stackoverflow.com/a/48610973/458193)
 - [ ] [深入：为什么不直接更新 this.state？](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+
+- [ ] React.memo 的使用场景（可参考 antd）
+- [ ] [传递给 useEffect 的函数在每次渲染中都会有所不同，这是刻意为之的。](https://zh-hans.reactjs.org/docs/hooks-effect.html#detailed-explanation)
