@@ -24,6 +24,7 @@
       - render
       - componentDidUpdate
   - Unmount
+    - componentWillUnmount
 - 为什么尽量构建无状态组件
 - 创建高阶组件
   - 返回一个全新的组件而不是改变一个组件
