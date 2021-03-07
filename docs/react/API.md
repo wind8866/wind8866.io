@@ -7,24 +7,28 @@
 
 - 挂载
   - **constructor()**
-    - 用于初始化state，绑定this
+    - 如果不初始化 state 或不进行方法绑定，则不需要为 React 组件实现构造函数。
+    - 用于初始化state，绑定this 及事件绑定
     - 避免在构造函数中引入任何副作用或订阅（接口请求不应在此）
-    - 避免props赋值给state
+    - 避免props赋值给state，如果需要，使用`static getDerivedStateFromProps()`❗️
   - static getDerivedStateFromProps()
+    - state 的值在任何时候都取决于 props
   - **render()**
-    - 可返回：React元素、数组或fragments、Protals、字符串或数字类型、布尔类型或null
+    - 继承 React.Component 后唯一必须实现的方法
+    - 可返回：React元素、数组或fragments、Protals、String、Number、Boolean 或 Null 类型
     - 应为纯函数，state不变的情况下，返回应该一致
     - 不可修改state，会引起死循环
   - **componentDidMount()**
     - 用于DOM节点渲染后的副作用操作，如网络请求，添加订阅
-    - 
+    - 不建议直接调用 setState 虽然不会渲染两次，但是会影响性能。除非想在使用 dom 的位置或大小等信息
 - 更新
   - static getDerivedStateFromProps()
     - 此方法适用于罕见的用例，即 state 的值在任何时候都取决于 props。
   - shouldComponentUpdate()
     - 参数(nextProps, nextState)
     - 返回值决定了 React 组件的输出是否受当前 state 或 props 更改的影响
-    - 用于性能优化，如果想特定的阻止更新，使用PureComponent
+    - 用于性能优化，如果想特定的阻止更新，使用PureComponent❗️
+    - 当返回 false 时，仍可能导致组件重新渲染。
   - **render()**
   - getSnapshotBeforeUpdate()
     - 返回值传递给componentDidUpdate，作为第三个参数
@@ -34,11 +38,11 @@
     - 参数(prevProps, prevState, snapshot)
     - 
 - 卸载
-  - componentWillUnmount()
+  - **componentWillUnmount()**
     - 注意调用，防止内存泄漏
 - 错误处理
   - static getDerivedStateFromError()
-    - 此生命周期会在后代组件抛出错误后被调用。 它将抛出的错误作为参数，并返回一个值以更新 state
+    - 此生命周期会在后代组件抛出错误后被调用。它将抛出的错误作为参数，并返回一个值以更新 state
     - 用于发生错误时，处理降级渲染。
   - componentDidCatch()
     - 参数(error, info)
@@ -55,6 +59,7 @@ React 并不会保证 state 的变更会立即生效。
 
 #### forceUpdate()
 可以跳过本组件的shouldComponentUpdate生命周期，强制执行重新渲染。
+适用场景是有个状态更新了，但这个状态没有使用 state 或 props 维护，又想更新渲染，则需要主动调用该方法。
 
 #### defaultProps
 该属性为子组件设置默认值
@@ -67,6 +72,9 @@ this.props.children是一个特殊的props属性
 
 #### state
 
+----
+----
+
 ### React.PureComponent
 未实现 shouldComponentUpdate()
 浅层对比 prop 和 state
@@ -75,6 +83,8 @@ this.props.children是一个特殊的props属性
 React.memo 为高阶组件。
 React.memo 仅检查 props 变更。
 此方法仅作为性能优化的方式而存在。但请不要依赖它来“阻止”渲染，因为这会产生 bug。
+使用常见见[我该如何实现 shouldComponentUpdate?](https://zh-hans.reactjs.org/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate)
+React.memo 等效于 PureComponent，但它只比较 props。
 
 ### React.createElement()
 创建并返回指定的React元素。
@@ -96,11 +106,11 @@ React.memo 仅检查 props 变更。
 ### React.Fragment
 React元素，简写`<></>`
 
-### React.createRef()
+### React.createRef()❗️
 React.createRef 创建一个能够通过 ref 属性附加到 React 元素的 ref。
 
-### React.forwardRef
-React.forwardRef 会创建一个React组件，这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中。
+### React.forwardRef❗️
+React.forwardRef 会创建一个React组件，这个组件能够将其接收的 ref 属性转发到其组件树下的另一个组件中。
 
 ### React.lazy
 React.lazy() 允许你定义一个动态加载的组件。这有助于缩减 bundle 的体积，并延迟加载在初次渲染时未用到的组件。
@@ -108,6 +118,9 @@ React.lazy() 允许你定义一个动态加载的组件。这有助于缩减 bun
 ### React.Suspense
 React.Suspense 可以指定加载指示器（loading indicator），以防其组件树中的某些子组件尚未具备渲染条件。
 目前仅支持React.lazy
+
+----
+----
 
 ## ReactDOM
 ### render()
@@ -124,5 +137,11 @@ React.Suspense 可以指定加载指示器（loading indicator），以防其组
 ### findDOMNode()
 findDOMNode 是一个访问底层 DOM 节点的应急方案（escape hatch）。
 
-### createPortal()
+### createPortal()❗️
+应用场景可参考`/react-doc/src/component/Portals`
 创建 portal。Portal 将提供一种将子节点渲染到 DOM 节点中的方式，该节点存在于 DOM 组件的层次结构之外。
+
+----
+----
+## 其他 API
+- [事件 API](https://zh-hans.reactjs.org/docs/events.html)
