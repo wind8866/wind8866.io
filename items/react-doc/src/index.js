@@ -31,6 +31,9 @@ import PropTypes from './component/PropTypes';
 // 渲染到父节点以外的节点
 import Portals from './component/Portals';
 
+// HOC
+import HOC from './component/HOC';
+
 // 简单的hook
 import Hook from './component/Hook/index';
 
@@ -50,7 +53,7 @@ const App = () => {
     const newSize = size === 'default' ? 'small' : 'default';
     setSize(newSize);
   }
-  // return <SwitchAntd />
+  return <HOC />
   return (<Size.Provider value={size}>
     <PrefixCls.Provider value="ant-">
       <TopBar
