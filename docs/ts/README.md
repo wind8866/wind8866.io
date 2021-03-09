@@ -256,9 +256,11 @@ React.FC：
 数据请求的数据格式应该定义成接口
 
 React.Types
-- React.FC
-- React.ComponentType
-- React.FormEvent
+- React.FC: react 函数组件
+- React.ComponentType: react组件
+- React.FormEvent: 表单事件（泛型接口）
+- HTMLInputElement: input
+- 
 
 ----
 ----
