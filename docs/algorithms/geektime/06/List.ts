@@ -12,7 +12,7 @@ interface List<T> {
   // 插入到尾部
   insertToTail(value: T): void
   // 将链表的值转化为数组
-  toString(): string
+  toString(symble: String): string
 }
 
-export default List
+export default List;
