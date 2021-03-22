@@ -42,6 +42,22 @@ const es6Sidebar = [
   }
 ];
 
+const blogSidebar = [
+  '2018-career-planning',
+  'macOS-JAVA-dev',
+  'README',
+  'null',
+  'aboutme',
+  'api-1',
+  'zepto-source-code',
+  'debug-Front-end-engineering',
+  'zhihu-macOS-reinstall',
+  'four-ways-of-writing-arrow-function',
+  '恭喜你正式成为一名B站UP主啦',
+  'front-end-tool',
+  '开发的可控性与确定性',
+]
+
 module.exports = {
   title: 'Wind',
   description: '起风了的笔记',
@@ -61,7 +77,8 @@ module.exports = {
         'Hooks',
         'TODO',
       ],
-      '/es6/': es6Sidebar
+      '/es6/': es6Sidebar,
+      '/blog/': blogSidebar,
     },
     lastUpdated: 'Last Updated',
   }
