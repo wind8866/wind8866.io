@@ -72,3 +72,21 @@ innerHTML 与 outerHTML 的区别是 outerHTML 只是移除 DOM 节点，而不�
 - [ ] 其他的元素的所有属性
 
 ## 1.6 特性和属性（Attributes and properties）
+大多数标准的 HTML 特性（attributes）会自动变成 DOM 对象的属性（properties）
+非标准的 HTML 特性不会变成 DOM 对象的属性。
+大部分标准的 HTML 特性被修改，对应的 DOM 对象属性也会自动更新，反之亦然（除了几个特例）。
+非标准属性建议使用 data-info，在 JS 中使用 elem.dataset.info 获取或设置。
+
+elem.hasAttribute(name)
+elem.getAttribute(name)
+elem.setAttribute(name)
+elem.removeAttribute(name)
+elem.attributes
+
+**特例**
+input 的 页面显示、`<input>` 的 value 特性、input.value 属性之间的关系，在[1.6.html](./1.6.html)
+
+
+**注意：**
+HTML 中，属性名大小写是不敏感的，特性名都是字符串。
+但是 DOM 属性可以是字符串、布尔值，甚至对象。

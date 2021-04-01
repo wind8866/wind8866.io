@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="input" value="aaa">
+    <input id="input2">
+    <input id="input3">
+    <script>
+        const input = document.querySelector('#input');
+        const input2 = document.querySelector('#input2');
+        const input3 = document.querySelector('#input3');
+
+        console.log(input.value);// aaa
+        console.log(input.getAttribute('value'));// aaa
+
+        input.value = 'bbb';// 页面显示 bbb
+        console.log(input.value);// bbb
+        console.log(input.getAttribute('value'));// aaa
+
+        input.setAttribute('value', 'ccc');// 页面显示bbb
+        console.log(input.value);// bbb
+        console.log(input.getAttribute('value'));// ccc
+        
+        input2.setAttribute('value', 'acc');// 页面显示 acc
+        console.log(input2.value);// acc
+        console.log(input2.getAttribute('value'));// acc
+
+        input3.value = 'abb';// 页面显示 abb
+        console.log(input3.value);// abb
+        console.log(input3.getAttribute('value'));// null
+
+        // 以上代码证明：
+        //  <input> 的 value 特性与 input 对象的 attribute 是一个东西
+        //  <input> 的显示是和 input.value 是一个东西
+        //  首次设置（直接写死在 html 或使用 setAttribute）<input> 的 value 特性的时候，值会同步到 input.value
+        //  之后再设置 setAttribute 或 input.value 两者都不会同步给对方
+    </script>
+
+
+    <div id="style" style="color: #aaa;font-size: 3em;">aaa</div>
+    <input type="checkbox" id="checkbox" checked>
+    <a id="a" href="#hello">link</a>
+    <script>
+        console.log('---------------')
+
+        const style = document.querySelector('#style')
+        console.log(style.getAttribute('style'))
+        console.log(style.style);
+        console.log(document.querySelector('#checkbox').checked)
+        console.log(a.getAttribute('href'));
+        console.log(a.href);
+    </script>
+
+
+    <div data-widget-name="menu">Choose the genre</div>
+    <script>
+        const widgetName = document.querySelector('[data-widget-name]');
+        console.log(widgetName.dataset.widgetName);
+    </script>
+
+
+    <a name="list">the list</a>
+    <ul>
+        <li><a href="http://google.com">http://google.com</a></li>
+        <li><a href="/tutorial">/tutorial.html</a></li>
+        <li><a href="local/path">local/path</a></li>
+        <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+        <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+        <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+    </ul>
+    <script>
+        const aList = document.querySelectorAll('a');
+        for (const a of aList) {
+            const href = a.getAttribute('href');
+            if (href && href.includes('://') && !/^http:\/\/internal.com/.test(href)) {
+                a.style.color = 'orange';
+            }
+        }
+    </script>
+</body>
+</html>
