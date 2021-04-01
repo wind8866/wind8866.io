@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>Animals
+      <ul>
+        <li>Mammals
+          <ul>
+            <li>Cows</li>
+            <li>Donkeys</li>
+            <li>Dogs</li>
+            <li>Tigers</li>
+          </ul>
+        </li>
+        <li>Other
+          <ul>
+            <li>Snakes</li>
+            <li>Birds</li>
+            <li>Lizards</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Fishes
+      <ul>
+        <li>Aquarium
+          <ul>
+            <li>Guppy</li>
+            <li>Angelfish</li>
+          </ul>
+        </li>
+        <li>Sea
+          <ul>
+            <li>Sea trout</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <script>
+    // 所有的<li>里面的文本内容是什么（没有子树）
+    // 嵌套的 <li> 的数量 — 所有后代，包括深层嵌套的后代。
+    // let liCount = 0;
+    // const loop = (node) => {
+    //   node.nodeType === 1 && node.tagName === 'LI' && ++liCount;
+    //   const children = node.childNodes;
+    //   if (children.length > 0) {
+    //     for (const childNode of children) {
+    //       if (childNode.nodeType === 3 && node.tagName === 'LI') {
+    //         console.log(childNode.data.trim());
+    //       } else if (node.nodeType === 1) {
+    //         loop(childNode);
+    //       }
+    //     }
+    //   }
+    // }
+    // loop(document.body.firstElementChild);
+    // console.log(liCount);
+
+    const liList = document.querySelectorAll('li');
+    for (const li of liList) {
+      const text = li.firstChild;
+      console.log(text.data.trim(), li.querySelectorAll('li').length)
+    }
+    // 因为浏览器还没有加载剩余的文本节点，所以当前
+    console.log(document.body.lastChild.nodeType)// 1
+  </script>
+
+</body>
+</html>

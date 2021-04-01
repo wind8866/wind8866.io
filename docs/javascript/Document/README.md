@@ -28,6 +28,7 @@ nextElementSibling、previousSibling、parentElement
 childNodes 是实时的
 parentNode 与 parentElementNode 的唯一区别是：document.documentElement.parentElementNode 为 null
 
+
 ## 1.4 搜索：getElement*，querySelector*
 
 - querySelector
@@ -47,6 +48,27 @@ parentNode 与 parentElementNode 的唯一区别是：document.documentElement.p
 
 ## 1.5 节点属性：type，tag 和 content
 用 TypeScript 描述 DOM 节点的继承关系
-```typescript
 
-```
+EventTarget：DOM节点支持事件
+Node：提供节点间导航
+Element：元素级导航，搜索方法
+
+所有元素都有的通用属性：
+nodeType：1: 元素、3: 文本、9: document
+tageName、nodeName：当前元素/节点名字，大写
+innerHTML、outerHTML：元素节点内容读取
+nodeValue、data：文本节点内容读取
+textContent: 安全写入
+hidden: 是否可见
+
+
+**注意：**
+innerHTML 与 outerHTML 的区别是 outerHTML 只是移除 DOM 节点，而不是像 innerHTML 一样直接替代。所以移除后的 DOM 节点仍可操作，但我们不应该这么做。
+
+**问题：**
+- [ ] document 属于哪一类？
+- [ ] 它位于 DOM 层次结构（hierarchy）中的什么位置？
+- [ ] 它继承自 Node 还是 Element，或者可能是 HTMLElement？
+- [ ] 其他的元素的所有属性
+
+## 1.6 特性和属性（Attributes and properties）
