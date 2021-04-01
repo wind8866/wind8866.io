@@ -27,3 +27,26 @@ nextElementSibling、previousSibling、parentElement
 **注意：**
 childNodes 是实时的
 parentNode 与 parentElementNode 的唯一区别是：document.documentElement.parentElementNode 为 null
+
+## 1.4 搜索：getElement*，querySelector*
+
+- querySelector
+- querySelectorAll
+- getElementById
+- getElementsByTagName
+- getElementsByClassName
+- getElementsByName
+
+- elem.matches(css)：检查当前元素是否匹配
+- elem.closest(css)：向祖先元素查找最近的匹配
+- 
+
+**注意：**
+实时集合：getElementsByTagName、getElementsByClassName、getElementsByName
+静态集合：querySelector、querySelectorAll、getElementById
+
+## 1.5 节点属性：type，tag 和 content
+用 TypeScript 描述 DOM 节点的继承关系
+```typescript
+
+```

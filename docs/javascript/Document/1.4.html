@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        console.log(root);
+        const a1 = document.getElementById('age-table')
+        const a2 = a1.querySelectorAll('label');
+        const a3 = a1.querySelector('td');
+        const a4 = document.querySelector('form[name=search]');
+        const input = a4.getElementsByTagName('input');
+        const a5 = input[0];
+        const a6 = input[input.length - 1];
+        console.log(a1, a2, a3, a4, a5, a6);
+    </script>
+</body>
+</html>
