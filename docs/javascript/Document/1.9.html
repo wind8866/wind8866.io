@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="example">
+    Introduction This Ecma Standard is based on several originating technologies, the most well known being JavaScript (Netscape) and JScript (Microsoft). The language was invented by Brendan Eich at Netscape and first appeared in that company’s Navigator 2.0 browser. It has appeared in all subsequent browsers from Netscape and in all browsers from Microsoft starting with Internet Explorer 3.0. The development of this Standard started in November 1996. The first edition of this Ecma Standard was adopted by the Ecma General Assembly of June 1997. That Ecma Standard was submitted to ISO/ IEC JTC 1 for adoption under the fast-track procedure, and approved as international standard ISO/IEC 16262, in April 1998. The Ecma General Assembly of June 1998 approved the second edition of ECMA-262 to keep it fully aligned with ISO/IEC 16262. Changes between the first and the second edition are editorial in nature.
+  </div>
+  <style>
+    #example {
+      width: 300px;
+      height: 200px;
+      border: 25px solid #E8C48F;
+      padding: 20px;
+      overflow: auto;
+      text-align: justify;
+      /* box-sizing: border-box; */
+    }
+  </style>
+  <script>
+    const ex = document.querySelector('#example');
+    console.log(ex.offsetParent);
+    console.log(ex.offsetLeft);
+    console.log(ex.offsetTop);
+    console.log(ex.offsetWidth);
+    console.log(ex.offsetHeight);
+
+    console.log(ex.clientLeft);
+    console.log(ex.clientTop);
+    console.log(ex.clientWidth);
+    console.log(ex.clientHeight);
+
+    console.log(ex.scrollHeight);
+    console.log(ex.scrollWidth);
+    console.log(ex.scrollTop = 30);
+    console.log(ex.scrollTop);
+    console.log(ex.scrollLeft);
+    
+
+  </script>
+</body>
+</html>

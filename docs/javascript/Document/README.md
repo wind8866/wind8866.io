@@ -90,3 +90,75 @@ input 的 页面显示、`<input>` 的 value 特性、input.value 属性之间�
 **注意：**
 HTML 中，属性名大小写是不敏感的，特性名都是字符串。
 但是 DOM 属性可以是字符串、布尔值，甚至对象。
+
+## 1.7 修改文档（document）
+
+- 创建新节点
+  - document.createElement(tagName)
+  - document.createTextNode(text)
+  - node.clone(bool): 是否克隆子元素
+- 插入和移除节点
+  - node.append(nodes | text)
+  - node.prepend(nodes | text)
+  - node.before(nodes | text)
+  - node.after(nodes | text)
+  - node.replaceWith(nodex | text)
+  - node.remove(childNode)
+- 在 html 中给定一些 HTML
+  - node.insertAdjacentHTML(where, html)
+    - beforebegin
+    - afterbegin
+    - beforeend
+    - afterend
+  - node.insertAdjecentText
+  - node.insertAdjecentElement
+- 过时方法
+  - parent.appendChild
+  - parent.insertBefore
+  - parent.removeChild
+  - parent.replaceChild
+- 其他
+  - new DocumentFragment()
+  - document.wirite(html) 不是去构建 dom 树，而是直接改变html文档
+
+## 1.8 样式和类
+相较于将样式写入 style 属性，我们应该首选通过 CSS 类的方式来添加样式。仅当类“无法处理”时，才应选择使用 style 属性的方式。
+CSS 中有 `计算 (computed) 值` 和 `解析 (resolved) 值` 两种概念。
+
+elem.className
+elem.classList
+  add
+  toggle
+  contains
+elem.style
+elem.style.cssText
+getComputedStyle(elem, pseudo)
+
+**注意：**
+为了保护用户隐私，`getComputedStyle(elem, ':visited')` 获取的并不是 `:visited` 的样式。同样 `:visited` 也不允许更改几何形状的样式。
+
+## 1.9 元素大小和滚动
+
+
+以下属性均返回数字或null
+- 外部
+  - offsetParent
+    - CSS 定位的（position 为 absolute，relative 或 fixed），
+    - 或 `<td>`，`<th>`，`<table>`，
+    - 或 `<body>`
+  - offsetTop: 元素边框最外侧距离最近的父元素的距离
+  - offsetLeft
+  - offsetWidth: 包括边框最左侧到最右侧的距离
+  - offsetHeight: 类上
+- 自身
+  - clientTop: 元素内容距离边框最上侧（包括边框与滚动条）
+  - clientLeft: 类上
+  - clientWidth: 元素内容的最左侧到最右侧（不包含滚动条）
+  - clientHeight: 类上
+- 滚动
+  - scrollTop: 竖直方向滚动的距离，可写
+  - scrollLeft: 水平方向上滚动的距离，可写
+  - scrollWidth: 文档内容的总宽度
+  - scrollHeight: 文档内容的总高度
+
+不使用 width/height 的原因：1、box-sizing 影响 2、可能为 auto 3、滚动条会有bug
