@@ -1,5 +1,13 @@
 
-## 1.1 
+
+## TODO
+- [ ] 1.7 修改文档
+- [ ] 1.9 元素大小和滚动
+- [ ] 1.11 坐标
+
+----
+----
+## 1.1 浏览器环境，规格
 - window
   - DOM
   - BOM
@@ -20,7 +28,7 @@ head: document.head
 childNodes、firstChild、lastChild
 children、firstElementChild、lastElementChild
 nextSibling、previousSibling、parentNode
-nextElementSibling、previousSibling、parentElement
+nextElementSibling、previousElementSibling、parentElement
 
 某些类型的 DOM 元素提供了单独的导航功能，如 table
 
@@ -40,7 +48,6 @@ parentNode 与 parentElementNode 的唯一区别是：document.documentElement.p
 
 - elem.matches(css)：检查当前元素是否匹配
 - elem.closest(css)：向祖先元素查找最近的匹配
-- 
 
 **注意：**
 实时集合：getElementsByTagName、getElementsByClassName、getElementsByName
@@ -138,8 +145,6 @@ getComputedStyle(elem, pseudo)
 为了保护用户隐私，`getComputedStyle(elem, ':visited')` 获取的并不是 `:visited` 的样式。同样 `:visited` 也不允许更改几何形状的样式。
 
 ## 1.9 元素大小和滚动
-
-
 以下属性均返回数字或null
 - 外部
   - offsetParent
@@ -162,3 +167,51 @@ getComputedStyle(elem, pseudo)
   - scrollHeight: 文档内容的总高度
 
 不使用 width/height 的原因：1、box-sizing 影响 2、可能为 auto 3、滚动条会有bug
+
+## 1.10 Window 大小和滚动
+- 文档可见部分（不包括滚动条）
+  - document.documentElement.clientWidth/clientHeight
+- 文档可见部分加上滚动条
+  - widow.innerWidth/innerHeight
+- 整个文档的宽高
+  - 见下面
+- 获得当前滚动
+  - window.pageYOffset/pageXOffset
+- 相对滚动
+  - window.scrollBy(x, y)
+- 绝对滚动
+  - window.scrollTo(x, y)
+- 滚动使 elem 可见
+  - elem.scrollIntoView(bool)
+    - true(默认): 窗口顶部
+    - false: 窗口底部
+- 锁定滚动
+  - 将 style 的 overflow 设置为 hidden
+
+```javascript
+const scrollHeight = Math.max(
+  document.body.scrollHeight, document.documentElement.scrollHeight,
+  document.body.offsetHeight, document.documentElement.offsetHeight,
+  document.body.clientHeight, document.documentElement.clientHeight,
+)
+```
+
+## 1.11 坐标
+浏览器中元素的定位有两套坐标系统，一种是相对于浏览器窗口，相当于 CSS 的 `position: fixed`，还有一种是相对于文档，与 文档根 document root 中的 `position: absolute` 类似。
+
+- 相对于窗口(elem.getBoundingClientRect)
+  - x/y
+  - width/height
+  - top/left
+  - bottom/right: 元素最右侧相对于窗口最左侧的距离
+- document.elementFromPoint(x, y)
+  - 返回指定坐标处嵌套最多的元素
+  - 如果为负值，则直接返回null
+- 文档坐标
+  - pageY = 相对于窗口的Y + 文竖直滚动出部分的高度
+  - pageY = elem.getboundingClientRect().top + window.pageYOffset
+  - pageX = 相对于窗口的X + 文档水平滚动出部分的高度
+  - pageX = elem.getboundingClientRect().left + window.pageXOffset
+
+
+![](https://zh.javascript.info/article/coordinates/coordinates.svg)

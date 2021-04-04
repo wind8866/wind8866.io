@@ -7,17 +7,52 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="root"></div>
-    <script>
-        console.log(root);
-        const a1 = document.getElementById('age-table')
-        const a2 = a1.querySelectorAll('label');
-        const a3 = a1.querySelector('td');
-        const a4 = document.querySelector('form[name=search]');
-        const input = a4.getElementsByTagName('input');
-        const a5 = input[0];
-        const a6 = input[input.length - 1];
-        console.log(a1, a2, a3, a4, a5, a6);
-    </script>
+  <form name="search">
+    <label>Search the site:
+      <input type="text" name="search">
+    </label>
+    <input type="submit" value="Search!">
+  </form>
+
+  <hr>
+
+  <form name="search-person">
+    Search the visitors:
+    <table id="age-table">
+      <tr>
+        <td>Age:</td>
+        <td id="age-list">
+          <label>
+            <input type="radio" name="age" value="young">less than 18</label>
+          <label>
+            <input type="radio" name="age" value="mature">18-50</label>
+          <label>
+            <input type="radio" name="age" value="senior">more than 50</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Additionally:</td>
+        <td>
+          <input type="text" name="info[0]">
+          <input type="text" name="info[1]">
+          <input type="text" name="info[2]">
+        </td>
+      </tr>
+
+    </table>
+
+    <input type="submit" value="Search!">
+  </form>
+  <script>
+    const a1 = document.getElementById('age-table');
+    const a2 = document.getElementsByTagName('label');
+    const a3 = a1.querySelector('td');
+    const a4 = document.querySelector('form[name=search]');
+    const a5All = document.querySelectorAll('form input');
+    const a5 = a5All[0];
+    const a6 = a5All[a5All.length - 1];
+    console.log(a1, a2, a3, a4, a5, a6);
+  </script>
 </body>
 </html>

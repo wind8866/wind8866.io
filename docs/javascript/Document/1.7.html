@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1 和 3
+    </script>
+
+    <ol id="elem">
+        <li>Hello</li>
+        <li>World</li>
+    </ol>
+    <script>
+        function clear(elem) {
+            elem.innerHTML = '';
+        }
+        clear(document.querySelector('#elem'))
+    </script>
+
+    <table id="table">
+        aaa
+        <tr>
+            <td>Test</td>
+        </tr>
+    </table>
+  
+    <script>
+        // alert(table); // 表格，就是它应有的样子
+    
+        table.remove();
+        // 为什么 aaa 还存在于文档中？
+        // 因为 aaa 被浏览器自动矫正为在 table 外面
+    </script>
+
+    <script>
+        const insterList = () => {
+            const ul = document.createElement('ul');
+            while(true) {
+                const value = prompt('输入');
+                if (value === null) {
+                    break;
+                }
+                const li = document.createElement('li');
+                li.innerText = value;
+                ul.append(li);
+            }
+            document.body.append(ul);
+        }
+        // insterList();
+    </script>
+    
+    <div id="container"></div>
+    <script>
+        let data = {
+            "Fish": {
+                "trout": {},
+                "salmon": {}
+            },
+            "Tree": {
+                "Huge": {
+                "sequoia": {},
+                "oak": {}
+                },
+                "Flowering": {
+                "apple tree": {},
+                "magnolia": {}
+                }
+            }
+        };
+        // 方法一
+        const createTree1 = (dom, data) => {
+            const html = '';
+            const createTreeHTML = (data) => {
+                for (const key of data.keys()) {
+                    
+                }
+            }
+            return html;
+        }
+        // 方法二
+        const createTree2 = (dom, data) => {
+            const fragment = document.createDocumentFragment();
+            
+            return fragment;
+        }
+
+        // let container = document.getElementById('container');
+        // const treeDOM = createTree1(container, data);
+        // document.body.append();
+    </script>
+</body>
+</html>

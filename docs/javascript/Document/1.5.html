@@ -68,9 +68,28 @@
       const text = li.firstChild;
       console.log(text.data.trim(), li.querySelectorAll('li').length)
     }
+  </script>
+
+  <script>
     // 因为浏览器还没有加载剩余的文本节点，所以当前
     console.log(document.body.lastChild.nodeType)// 1
   </script>
 
+  <script>
+    // 会显示： BODY
+  </script>
+
+  <script>
+    console.log(document.constructor.name);// HTMLDocument
+
+    console.dir(document);
+    document.__proto__;// HTMLDocument
+    document.__proto__.__proto__;// Document
+    document.__proto__.__proto__.__proto__;// Node
+    document.__proto__.__proto__.__proto__.__proto__;// EventTarget
+    document.__proto__.__proto__.__proto__.__proto__.__proto__;// Object
+
+    // document 是 HTMLDOcument 类的实例
+  </script>
 </body>
 </html>

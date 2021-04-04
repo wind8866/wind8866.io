@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    .notification {
+      background: #aca;
+      padding: 1em;
+      border-radius: 4px;
+      position: fixed;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    const showNotification = (option)  => {
+      const {
+        top = 10,
+        right = 10,
+        html = 'ok',
+        className = '',
+      } = option;
+
+      const node = document.createElement('div');
+      node.classList.add('notification');
+      className && node.classList.add(className);
+      node.innerHTML = html;
+      node.style.top = top + 'px';
+      node.style.right = right + 'px';
+      document.body.append(node);
+      setTimeout(() => {
+        node.classList.add('hidden');
+      }, 1500)
+    };
+    // 在窗口的右上角附近显示一个带有文本 "Hello" 的元素
+    showNotification({
+      right: 10, // 距窗口右边缘 10px（默认为 0px）
+      html: "Hello!", // 通知中的 HTML
+      className: "welcome" // div 的附加类（可选）
+    });
+  </script>
+</body>
+</html>

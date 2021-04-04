@@ -6,13 +6,107 @@
     <li>Pete</li>
   </ul>
   <script>
-    // <div> DOM 节点？
-    // <ul> DOM 节点？
-    // 第二个 <li> 节点（即包含 Pete 的节点）？
-
-    console.log(document.body.firstElementChild)
-    console.log(document.body.firstElementChild.nextElementSibling)
-    console.log(document.documentElement.lastElementChild.lastElementChild.previousElementSibling.children[1])
+    const body = document.body;
+    const div = body.firstElementChild;
+    console.log(div);
+    const ul = div.nextElementSibling;
+    console.log(ul);
+    const li1 = ul.lastElementChild;
+    console.log(li1);
   </script>
+
+  <script>
+    // 是真的
+    // 不是真的，因为 children 是 元素节点，节点前可能还有文本节点
+    console.log(ul.children[0].previousSibling)
+  </script>
+
+  <table id="table">
+    <tr>
+      <td>1:1</td>
+      <td>2:1</td>
+      <td>3:1</td>
+      <td>4:1</td>
+      <td>5:1</td>
+    </tr>
+    <tr>
+      <td>1:2</td>
+      <td>2:2</td>
+      <td>3:2</td>
+      <td>4:2</td>
+      <td>5:2</td>
+    </tr>
+    <tr>
+      <td>1:3</td>
+      <td>2:3</td>
+      <td>3:3</td>
+      <td>4:3</td>
+      <td>5:3</td>
+    </tr>
+    <tr>
+      <td>1:4</td>
+      <td>2:4</td>
+      <td>3:4</td>
+      <td>4:4</td>
+      <td>5:4</td>
+    </tr>
+    <tr>
+      <td>1:5</td>
+      <td>2:5</td>
+      <td>3:5</td>
+      <td>4:5</td>
+      <td>5:5</td>
+    </tr>
+  </table>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      border: 1px solid black;
+      padding: 3px 5px;
+    }
+  </style>
+  <script>
+    // https://zh.js.cx/task/select-diagonal-cells/solution/
+    // 方法一
+    {
+      const tds = document.querySelectorAll('#table td');
+      let step = 0;
+      for (let index = 0;index < tds.length;index++) {
+        if (index % 5 === step) {
+          tds[index].style.background = 'red';
+          ++step;
+          index += 5;
+        } else {
+          ++index;
+        }
+      }
+    }
+
+    // 方法二
+    // 不要忘记 tbody
+    {
+      let tr = document.querySelector('table').firstElementChild.firstElementChild;
+      let step = 0;
+      while (tr) {
+        let td = tr.firstElementChild;
+        let head = 0;
+        while (td) {
+          if (head === step) {
+            td.style.color = '#fff';
+            ++step;
+            break;
+          }
+          ++head;
+          td = td.nextElementSibling;
+        }
+        tr = tr.nextElementSibling;
+      }
+    }
+  </script>
+
 </body>
 </html>
+
