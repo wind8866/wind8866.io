@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    body {
+      height: 2000px;
+    }
+    .note {
+      position: absolute;
+      z-index: 1000;
+      padding: 5px;
+      border: 1px solid black;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      text-align: center;
+      font: italic 14px serif;
+    }
+
+    blockquote {
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 0 0 0 100px;
+      padding: .5em 10px;
+      quotes: "\201C""\201D""\2018""\2019";
+      display: inline-block;
+      white-space: pre;
+    }
+
+    blockquote:before {
+      color: #ccc;
+      content: open-quote;
+      font-size: 4em;
+      line-height: .1em;
+      margin-right: .25em;
+      vertical-align: -.4em;
+    }
+
+  </style>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae
+      esse sequi officia sapiente.</p>
+  
+    <blockquote>
+      Teacher: Why are you late?
+      Student: There was a man who lost a hundred dollar bill.
+      Teacher: That's nice. Were you helping him look for it?
+      Student: No. I was standing on it.
+    </blockquote>
+  
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae
+      esse sequi officia sapiente.</p>
+  
+  
+    <script>
+      const positionAt = (anchor, position, elem) => {
+        const anchorXY = anchor.getBoundingClientRect();
+
+        // top-out，right-out，bottom-out
+        // top-in，right-in，bottom-in
+        if (position === 'top-out') {
+          // const elemHeight = elem.getBoundingClientRect().height;
+          const elemHeight = elem.offsetHeight;
+          elem.style.left = anchorXY.left + window.scrollX + 'px';
+          elem.style.top = anchorXY.top - elemHeight + window.scrollY + 'px';
+        } else if (position === 'right-out') {
+          elem.style.left = anchorXY.right + window.scrollX + 'px';
+          elem.style.top = anchorXY.top + window.scrollY + 'px';
+        } else if (position === 'bottom-out') {
+          elem.style.left = anchorXY.left + window.scrollX + 'px';
+          elem.style.top = anchorXY.bottom + window.scrollY + 'px';
+        } else if (position === 'top-in') {
+          elem.style.left = anchorXY.left + window.scrollX + 'px';
+          elem.style.top = anchorXY.top + window.scrollY + 'px';
+        } else if (position === 'right-in') {
+          elem.style.left = anchorXY.left + anchorXY.width - elem.offsetWidth + window.scrollX + 'px';
+          elem.style.top = anchorXY.top + window.scrollY + 'px';
+        } else if (position === 'bottom-in') {
+          elem.style.left = anchorXY.left + window.scrollX + 'px';
+          elem.style.top = anchorXY.top + anchorXY.height - elem.offsetHeight + window.scrollY + 'px';
+        }
+      }
+
+      // top/right/bottom
+      const showNote = (anchor, position, html) => {
+        const tipsNode = document.createElement('div');
+        tipsNode.classList.add('note');
+        tipsNode.innerHTML = html;
+        document.body.append(tipsNode);
+
+        positionAt(anchor, position, tipsNode);
+      }
+
+      
+      const anchor = document.querySelector('blockquote');
+      showNote(anchor, 'top-out', '<i>Top Out</i>')
+      showNote(anchor, 'right-out', 'Right Out')
+      showNote(anchor, 'bottom-out', 'Bottom Out')
+      showNote(anchor, 'top-in', 'Top In')
+      showNote(anchor, 'right-in', 'Right In')
+      showNote(anchor, 'bottom-in', 'Bottom In')
+    </script>
+</body>
+</html>
