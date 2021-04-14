@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="id1">
+    1
+    <div id="id2">
+      2
+      <div id="id3">
+        3
+      </div>
+    </div>
+  </div>
+  <style>
+    div {
+      padding: 2em;
+      outline: 1px dashed;
+    }
+  </style>
+  <script>
+    const id1 = document.querySelector('#id1');
+    const id2 = document.querySelector('#id2');
+    const id3 = document.querySelector('#id3');
+    id2.addEventListener('click', function(e) {
+      console.log('id2', e);
+      e.stopPropagation();
+    })
+    id1.addEventListener('click', function(e) {
+      console.log('id1', e);
+    })
+    id2.addEventListener('contextmenu', function(e) {
+      console.log('id2 right', e);
+      e.stopImmediatePropagation();
+    })
+    id1.addEventListener('contextmenu', function(e) {
+      console.log('id1 right', e);
+    })
+  </script>
+</body>
+</html>

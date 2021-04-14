@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="menu">
+    <button data-action="save">Save</button>
+    <button data-action="load">Load</button>
+    <button data-action="search">Search</button>
+  </div>
+  <script>
+    // 委托标记的行为
+    class Menu {
+      constructor(selecter) {
+        selecter.addEventListener('click', this.onClick);
+      }
+      onClick = (event) => {
+        const target = event.target.dataset.action;
+        if (!target) {
+          return false;
+        }
+        this[target](event)
+      }
+      save(event) {
+        console.log('save', event);
+      }
+      load() {
+        console.log('load');
+      }
+      search() {
+        console.log('search');
+      }
+    }
+    const menu = new Menu(document.querySelector('#menu'));
+  </script>
+
+  <div>
+    Counter: <input type="button" value="1" data-counter>
+    One more counter: <input type="button" value="2" data-counter>
+  </div>
+  <script>
+    // 行为：计数器
+    document.addEventListener('click', function(event) {
+      if (event.target.dataset.counter !== undefined) {
+        event.target.value = +event.target.value + 1;
+      }
+    })
+  </script>
+
+  <div>
+    <button data-toggle-id="subscribe-mail">
+      Show the subscription form
+    </button>
+    
+    <form id="subscribe-mail" hidden>
+      Your mail: <input type="email">
+    </form>
+  </div>
+  <script>
+    // 行为：切换器
+    document.addEventListener('click', function(event) {
+      const toggleId = event.target.dataset.toggleId
+      if (toggleId) {
+        const target = document.getElementById(toggleId);
+        target.hidden = !target.hidden;
+      }
+    })
+  </script>
+</body>
+</html>
