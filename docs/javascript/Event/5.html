@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <pre id="rabbit">
+    |\   /|
+     \|_|/
+     /. .\
+    =\_Y_/=
+     {>o<}
+  </pre>
+  <button onclick="hide()">Hide()</button>
+  
+  <script>
+    function hide() {
+      let event = new CustomEvent('hide', {
+        cancelable: true
+      });
+      if (!rabbit.dispatchEvent(event)) {
+        console.log('被阻止了');
+      } else {
+        rabbit.hidden = true;
+      }
+    }
+    rabbit.addEventListener('hide', function(event) {
+      if (confirm('是否阻止默认事件')) {
+        event.preventDefault();
+      }
+    })
+  </script>
+</body>
+</html>

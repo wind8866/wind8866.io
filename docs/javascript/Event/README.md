@@ -22,9 +22,29 @@ html 中事件绑定不是驼峰写法，调用函数必须写上括号 `<div on
 
 
 ## 2.3 事件委托
--
 
 
+## 2.4 浏览器默认行为
+阻止默认行为
+onclick: return 或 event.preventDefault()
+addEventListener: event.preventDefault()
+
+若默认行为被阻止，则 event.defaultPrevented 变为 true
+
+## 2.5 创建自定义事件
+自定义事件相当于一个在 DOM 元素上的发布-订阅模式
+
+```javascript
+elem.addEventListener('hello', function(event) {
+  console.log(event.detail.name)
+});
+elem.dispatchEvent(new CustomEvent('hello', {
+  detail: { name: 'John' }
+}))
+```
+创建自定义事件使用 CustomEvent
+
+一般来说浏览器以队列的方式处理事件，但当一个事件是在另一个事件中发起的，这个事件会被立即处理。
 
 
 
