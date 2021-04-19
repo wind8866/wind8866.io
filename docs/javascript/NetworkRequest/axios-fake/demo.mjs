@@ -69,7 +69,7 @@ const instance = axios.create({
   headers: {'X-Custom-Header': 'foobar'}
 });
 axios({
-  url: '/user',
+  url: 'fake.json',
   timeout: 40000,
 }).then(res => {
   console.log('create', res);

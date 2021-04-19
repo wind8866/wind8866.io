@@ -1,12 +1,8 @@
-
-const fetch = (options) => {
-  console.log()
-}
-const fetchRequest = (options) => {
+const fetchRequest = async (options) => {
   console.log(options);
-  const res = await fetch()
-  return new Promise((resolve, reject) {
-    resolve('resolve')
+  const res = await fetch(options.url);
+  return new Promise((resolve, reject) => {
+    resolve(res);
   })
 }
 export default fetchRequest;
