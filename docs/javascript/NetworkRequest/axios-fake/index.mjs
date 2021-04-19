@@ -37,7 +37,7 @@ class Axios {
     return true;
   }
   merge() {
-    this.options.method = this.customOptions.method || 'get';
+    this.options.method = this.customOptions.method || 'GET';
     this.options.url = this.customOptions.url;
     this.options.baseURL = this.customOptions.baseURL || Axios.publicConfig.baseURL;
   }
@@ -48,14 +48,14 @@ class Axios {
   get(url, options) {
     this.init({
       url,
-      method: 'get',
+      method: 'GET',
       ...options
     })
   }
   post(url, options) {
     this.init({
       url,
-      method: 'post',
+      method: 'POST',
       ...options
     })
   }

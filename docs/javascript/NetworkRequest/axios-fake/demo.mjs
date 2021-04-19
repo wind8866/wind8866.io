@@ -71,6 +71,9 @@ const instance = axios.create({
 axios({
   url: 'fake.json',
   timeout: 40000,
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8'
+  }
 }).then(res => {
   console.log('create', res);
 })
