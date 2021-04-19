@@ -1,4 +1,6 @@
 
+import fetchRequest from './fetch.mjs';
+
 /**
  * 为了将公共的属性存储为所有实例都可用
  * 1、直接存成变量
@@ -36,16 +38,7 @@ class Axios {
   }
   request() {
     console.log(this.options)
-    return new Promise((resolve, reject) => {
-      // reject('error');
-      setTimeout(() => {
-        resolve({
-          code: 200,
-          msg: 'ok',
-          request: this.options
-        })
-      }, 3000);
-    })
+    return fetchRequest(this.options);
   }
   get(url, options) {
     this.init({
