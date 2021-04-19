@@ -25,6 +25,13 @@
 }
 ```
 
+## 图例
+📖读
+📝写：标记完成
+👀复习
+⏳下一步
+
+
 - 简介
   - [ ] [JavaScript 简介](https://zh.javascript.info/intro)
   - [ ] [手册与规范](https://zh.javascript.info/manuals-specifications)
@@ -97,7 +104,7 @@
   - [ ] [原型继承](https://zh.javascript.info/prototype-inheritance)
   - [ ] [F.prototype](https://zh.javascript.info/function-prototype)
   - [ ] [原生的原型](https://zh.javascript.info/native-prototypes)
-  - [ ] [原型方法，没有 __proto__ 的对象](https://zh.javascript.info/prototype-methods)
+  - [ ] [原型方法，没有 \_\_proto\_\_ 的对象](https://zh.javascript.info/prototype-methods)
 - 类
   - [ ] [Class 基本语法](https://zh.javascript.info/class)
   - [ ] [类继承](https://zh.javascript.info/class-inheritance)
@@ -132,23 +139,23 @@
   - [ ] [Reference Type](https://zh.javascript.info/reference-type)
   - [ ] [BigInt](https://zh.javascript.info/bigint)
 - Document
-  - [ ] [浏览器环境，规格](https://zh.javascript.info/browser-environment)
-  - [ ] [DOM 树](https://zh.javascript.info/dom-nodes)
-  - [ ] [遍历 DOM](https://zh.javascript.info/dom-navigation)
-  - [ ] [搜索：getElement*，querySelector*](https://zh.javascript.info/searching-elements-dom)
-  - [ ] [节点属性：type，tag 和 content](https://zh.javascript.info/basic-dom-node-properties)
-  - [ ] [特性和属性（Attributes and properties）](https://zh.javascript.info/dom-attributes-and-properties)
-  - [ ] [修改文档（document）](https://zh.javascript.info/modifying-document)
-  - [ ] [样式和类](https://zh.javascript.info/styles-and-classes)
-  - [ ] [元素大小和滚动](https://zh.javascript.info/size-and-scroll)
-  - [ ] [Window 大小和滚动](https://zh.javascript.info/size-and-scroll-window)
-  - [ ] [坐标](https://zh.javascript.info/coordinates)
+  - [x] 📖📝[浏览器环境，规格](https://zh.javascript.info/browser-environment)
+  - [x] 📖📝[DOM 树](https://zh.javascript.info/dom-nodes)
+  - [x] 📖📝[遍历 DOM](https://zh.javascript.info/dom-navigation)
+  - [x] 📖📝[搜索：getElement*，querySelector*](https://zh.javascript.info/searching-elements-dom)
+  - [x] 📖📝[节点属性：type，tag 和 content](https://zh.javascript.info/basic-dom-node-properties)
+  - [x] 📖📝[特性和属性（Attributes and properties）](https://zh.javascript.info/dom-attributes-and-properties)
+  - [x] 📖📝[修改文档（document）](https://zh.javascript.info/modifying-document)
+  - [x] 📖📝[样式和类](https://zh.javascript.info/styles-and-classes)
+  - [x] 📖📝[元素大小和滚动](https://zh.javascript.info/size-and-scroll)
+  - [x] 📖📝[Window 大小和滚动](https://zh.javascript.info/size-and-scroll-window)
+  - [x] 📖📝[坐标](https://zh.javascript.info/coordinates)
 - 事件简介
-  - [ ] [浏览器事件简介](https://zh.javascript.info/introduction-browser-events)
-  - [ ] [冒泡和捕获](https://zh.javascript.info/bubbling-and-capturing)
-  - [ ] [事件委托](https://zh.javascript.info/event-delegation)
-  - [ ] [浏览器默认行为](https://zh.javascript.info/default-browser-action)
-  - [ ] [创建自定义事件](https://zh.javascript.info/dispatch-events)
+  - [ ] 📖[浏览器事件简介](https://zh.javascript.info/introduction-browser-events)
+  - [ ] 📖[冒泡和捕获](https://zh.javascript.info/bubbling-and-capturing)
+  - [ ] 📖[事件委托](https://zh.javascript.info/event-delegation)
+  - [ ] 📖[浏览器默认行为](https://zh.javascript.info/default-browser-action)
+  - [ ] 📖[创建自定义事件](https://zh.javascript.info/dispatch-events)
 - UI 事件
   - [ ] [鼠标事件](https://zh.javascript.info/mouse-events-basics)
   - [ ] [移动鼠标：mouseover/out，mouseenter/leave](https://zh.javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave)
@@ -173,24 +180,24 @@
   - [ ] [弹窗和 window 的方法](https://zh.javascript.info/popup-windows)
   - [ ] [跨窗口通信](https://zh.javascript.info/cross-window-communication)
   - [ ] [点击劫持攻击](https://zh.javascript.info/clickjacking)
-- 二进制数据，文件
+- ⏳二进制数据，文件
   - [ ] [ArrayBuffer，二进制数组](https://zh.javascript.info/arraybuffer-binary-arrays)
   - [ ] [TextDecoder 和 TextEncoder](https://zh.javascript.info/text-decoder)
   - [ ] [Blob](https://zh.javascript.info/blob)
   - [ ] [File 和 FileReader](https://zh.javascript.info/file)
 - 网络请求
-  - [ ] [Fetch](https://zh.javascript.info/fetch)
-  - [ ] [FormData](https://zh.javascript.info/formdata)
-  - [ ] [Fetch：下载进度](https://zh.javascript.info/fetch-progress)
-  - [ ] [Fetch：中止（Abort）](https://zh.javascript.info/fetch-abort)
-  - [ ] [Fetch：跨源请求](https://zh.javascript.info/fetch-crossorigin)
-  - [ ] [Fetch API](https://zh.javascript.info/fetch-api)
-  - [ ] [URL 对象](https://zh.javascript.info/url)
-  - [ ] [XMLHttpRequest](https://zh.javascript.info/xmlhttprequest)
-  - [ ] [可恢复的文件上传](https://zh.javascript.info/resume-upload)
-  - [ ] [长轮询（Long polling）](https://zh.javascript.info/long-polling)
-  - [ ] [WebSocket](https://zh.javascript.info/websocket)
-  - [ ] [Server Sent Events](https://zh.javascript.info/server-sent-events)
+  - [ ] 📖[Fetch](https://zh.javascript.info/fetch)
+  - [ ] 📖[FormData](https://zh.javascript.info/formdata)
+  - [ ] 📖[Fetch：下载进度](https://zh.javascript.info/fetch-progress)
+  - [ ] 📖[Fetch：中止（Abort）](https://zh.javascript.info/fetch-abort)
+  - [ ] 📖[Fetch：跨源请求](https://zh.javascript.info/fetch-crossorigin)
+  - [ ] 📖[Fetch API](https://zh.javascript.info/fetch-api)
+  - [ ] 📖[URL 对象](https://zh.javascript.info/url)
+  - [ ] 📖[XMLHttpRequest](https://zh.javascript.info/xmlhttprequest)
+  - [ ] 📖[可恢复的文件上传](https://zh.javascript.info/resume-upload)
+  - [ ] 📖[长轮询（Long polling）](https://zh.javascript.info/long-polling)
+  - [ ] 📖[WebSocket](https://zh.javascript.info/websocket)
+  - [ ] 📖[Server Sent Events](https://zh.javascript.info/server-sent-events)
 - 在浏览器中存储数据
   - [ ] [Cookie，document.cookie](https://zh.javascript.info/cookie)
   - [ ] [LocalStorage，sessionStorage](https://zh.javascript.info/localstorage)
