@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  {
+    let buffer = new ArrayBuffer(16);
+    console.log(buffer);
+    console.dir(ArrayBuffer)
+
+    let buffer8  = new Uint8Array(buffer);
+    console.log(buffer8);
+  }
+  {
+    let buffer = new Uint8Array([255, 255, 255, 255]).buffer;
+    let dataView = new DataView(buffer);
+    console.log(dataView);
+  }
+  {
+    let uint8Array = new Uint8Array([72, 101, 108, 108, 111]);
+
+    console.log(new TextDecoder().decode(uint8Array))
+    console.log(new TextDecoder());
+  }
+  {
+    let encoder = new TextEncoder();
+    console.log(encoder.encode("Hello"))
+    console.log(encoder)
+  }
+</script>
+</body>
+</html>

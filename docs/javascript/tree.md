@@ -177,14 +177,14 @@
   - [ ] [选择（Selection）和范围（Range）](https://zh.javascript.info/selection-range)
   - [ ] [事件循环：微任务和宏任务](https://zh.javascript.info/event-loop)
 - Frame 和 window
-  - [ ] [弹窗和 window 的方法](https://zh.javascript.info/popup-windows)
+  - [ ] 📖[弹窗和 window 的方法](https://zh.javascript.info/popup-windows)
   - [ ] [跨窗口通信](https://zh.javascript.info/cross-window-communication)
   - [ ] [点击劫持攻击](https://zh.javascript.info/clickjacking)
 - ⏳二进制数据，文件
-  - [ ] [ArrayBuffer，二进制数组](https://zh.javascript.info/arraybuffer-binary-arrays)
-  - [ ] [TextDecoder 和 TextEncoder](https://zh.javascript.info/text-decoder)
-  - [ ] [Blob](https://zh.javascript.info/blob)
-  - [ ] [File 和 FileReader](https://zh.javascript.info/file)
+  - [ ] 📖[ArrayBuffer，二进制数组](https://zh.javascript.info/arraybuffer-binary-arrays)
+  - [ ] 📖[TextDecoder 和 TextEncoder](https://zh.javascript.info/text-decoder)
+  - [ ] 📖[Blob](https://zh.javascript.info/blob)
+  - [ ] 📖[File 和 FileReader](https://zh.javascript.info/file)
 - 网络请求
   - [ ] 📖[Fetch](https://zh.javascript.info/fetch)
   - [ ] 📖[FormData](https://zh.javascript.info/formdata)
@@ -199,7 +199,7 @@
   - [ ] 📖[WebSocket](https://zh.javascript.info/websocket)
   - [ ] 📖[Server Sent Events](https://zh.javascript.info/server-sent-events)
 - 在浏览器中存储数据
-  - [ ] [Cookie，document.cookie](https://zh.javascript.info/cookie)
+  - [ ] 📖📖[Cookie，document.cookie](https://zh.javascript.info/cookie)
   - [ ] [LocalStorage，sessionStorage](https://zh.javascript.info/localstorage)
   - [ ] [IndexedDB](https://zh.javascript.info/indexeddb)
 - 动画
