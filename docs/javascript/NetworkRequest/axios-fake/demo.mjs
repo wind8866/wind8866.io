@@ -8,38 +8,36 @@ console.dir(axios)
  * get 用法
  *  params 可选
  */
-// const params = {
-//   params: {
-//     ID: 12345
-//   }
-// };
-// axios.get('/user', params).then(function (response) {
-//   // 处理成功情况
-//   console.log('then 1', response);
-// }).catch(function (error) {
-//   // 处理错误情况
-//   console.log('catch', error);
-// }).then(function (a) {
-//   // 总是会执行
-//   console.log('then 2', a);
-// });
+const params = {
+  params: {
+    ID: 12345
+  }
+};
+axios.get('/api/xhr/user', params).then(function (response) {
+  // 处理成功情况
+  console.log('then 1', response);
+}).catch(function (error) {
+  // 处理错误情况
+  console.log('catch', error);
+}).then(function (a) {
+  // 总是会执行
+  console.log('then 2', a);
+});
 
 /**
  * post 用法
  */
-// const post = axios.post('/user', {
+// const post = axios.post('/set-user', {
 //   firstName: 'Fred',
 //   lastName: 'Flintstone'
-// })
-// .then(function (response) {
+// }).then(function (response) {
 //   console.log(response);
-// })
-// .catch(function (error) {
+// }).catch(function (error) {
 //   console.log(error);
 // });
 // console.log(post.then(res => {
 //   console.log(res);
-// }))
+// }));
 
 /**
  * config/request

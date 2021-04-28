@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="login()">login</button>
+  <button onclick="cookieFun()">cookie</button>
+<script>
+  const login = async () => {
+    const domain = 'http://127.0.0.1:8866';
+    const response = await fetch(`${domain}/login`);
+    console.log(response);
+    const json = await response.json();
+    console.log(json);
+  }
+  const cookieFun = () => {
+    console.log(document.cookie);
+  };
+</script>
+</body>
+</html>
