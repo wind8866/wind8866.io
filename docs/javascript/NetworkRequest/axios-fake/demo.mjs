@@ -13,7 +13,39 @@ const params = {
     ID: 12345
   }
 };
+// TODO: 支持带参数，服务端返回参数
 axios.get('/api/xhr/user', params).then(function (response) {
+  // 处理成功情况
+  console.log('then 1', response);
+}).catch(function (error) {
+  // 处理错误情况
+  console.log('catch', error);
+}).then(function (a) {
+  // 总是会执行
+  console.log('then 2', a);
+});
+
+fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
+  .then(response => response.json())
+  .then(commits => alert(commits[0].author.login));
+
+/**
+ * 错误处理
+ */
+axios.get('/api/xhr/error', {}).then(function (response) {
+  // 处理成功情况
+  console.log('then 1', response);
+}).catch(function (error) {
+  // 处理错误情况
+  console.log('catch', error);
+}).then(function (a) {
+  // 总是会执行
+  console.log('then 2', a);
+});
+/**
+ * 等待 pending
+ */
+axios.get('/api/xhr/pending', { time: 3000 }).then(function (response) {
   // 处理成功情况
   console.log('then 1', response);
 }).catch(function (error) {
