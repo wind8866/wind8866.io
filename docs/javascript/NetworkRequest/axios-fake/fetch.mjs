@@ -12,7 +12,7 @@ const fetchRequest = async (options) => {
   let fetchOPtions = {
     method: options.method,
     headers: options.headers,
-    body: options.data
+    body: options.data,
   }
   let url = options.url;
   if (options.transformRequest) {

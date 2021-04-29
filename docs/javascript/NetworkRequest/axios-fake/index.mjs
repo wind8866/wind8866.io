@@ -1,5 +1,7 @@
-
+// import qs from 'qs';
 import fetchRequest from './fetch.mjs';
+
+const qs = window.Qs;
 
 /**
  * 为了将公共的属性存储为所有实例都可用
@@ -40,6 +42,18 @@ class Axios {
     this.options.method = this.customOptions.method || 'GET';
     this.options.url = this.customOptions.url;
     this.options.baseURL = this.customOptions.baseURL || Axios.publicConfig.baseURL;
+    this.format();
+  }
+  format() {
+    const {
+      method,
+      ...otherOptions
+    } = this.customOptions;
+    
+    if (method === 'GET' && typeof otherOptions.params === 'object') {
+      this.options.url = `${this.options.url}?${qs.stringify(otherOptions.params)}`;
+    }
+
   }
   request() {
     console.log(this.options)

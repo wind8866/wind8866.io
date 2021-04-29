@@ -1,12 +1,19 @@
-const utils = require('./utils');
 
+const url = require('url');
+const utils = require('./utils');
+const qs = require('qs');
 const api = {
   '/api/xhr/user': (request) => {
+    const urlFormat = url.parse(request.url);
     return {
       header: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify({ userName: 'zhangsan', userCode: '8866' }),
+      body: JSON.stringify({
+        userName: 'zhangsan',
+        userCode: '8866',
+        request: qs.parse(urlFormat.query)
+      }),
     }
   },
   '/api/xhr/error': (request) => {
@@ -22,7 +29,7 @@ const api = {
     return code304;
   },
   '/api/xhr/pending': async (request) => {
-    await utils.sleep(2000);
+    await utils.sleep(10000);
     return {
       body: 'ok',
     }
@@ -30,9 +37,10 @@ const api = {
 }
 
 
-const xhr = (request) => {
-  if (typeof api[request.url] === 'function') {
-    return api[request.url]();
+const xhr = async (request) => {
+  const pathname = url.parse(request.url).pathname;
+  if (typeof api[pathname] === 'function') {
+    return await api[pathname](request);
   }
   return utils['404']();
 }

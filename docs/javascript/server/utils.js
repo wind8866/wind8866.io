@@ -7,7 +7,7 @@ const response404 = () => {
   }
 }
 const sleep = (time) => {
-  return new Promise((reject) => setTimeout(reject, time));
+  return new Promise(resolve => { setTimeout(resolve, time) });
 }
 
 

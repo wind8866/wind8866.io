@@ -1,19 +1,22 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const url = require('url');
 
 const xhr = require('./xhr');
 const cookie = require('./cookie');
 const utils = require('./utils');
 const mineTypeMap = require('./mineTypeMap')
 
-http.createServer((request, response) => {
+http.createServer(async (request, response) => {
   let res = {};
-  if (request.url === '' || request.url === '/') {
+  const urlFormat = url.parse(request.url);
+  console.log(urlFormat);
+  if (urlFormat.pathname === '' || urlFormat.pathname === '/') {
     res = {
       body: 'ok'
     }
-  } else if (/^\/xhr/.test(request.url)) {
+  } else if (/^\/xhr/.test(urlFormat.pathname)) {
     const targetURL = path.resolve(__dirname, '../NetworkRequest/axios-fake/' + request.url.replace(/^\/xhr/, ''));
     const extName = path.extname(targetURL).substr(1);
     console.log(targetURL);
@@ -24,9 +27,9 @@ http.createServer((request, response) => {
       fs.createReadStream(targetURL).pipe(response);
     }
     return false;
-  } else if (/^\/api\/xhr/.test(request.url)) {
-    res = xhr(request);
-  } else if (/^\/api\/cookie/.test(request.url)) {
+  } else if (/^\/api\/xhr/.test(urlFormat.pathname)) {
+    res = await xhr(request);
+  } else if (/^\/api\/cookie/.test(urlFormat.pathname)) {
     res = cookie(request);
   } else {
     res = utils['404']();
