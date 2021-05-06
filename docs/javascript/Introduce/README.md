@@ -1,0 +1,38 @@
+JavaScript 引擎，有时也称作“JavaScript 虚拟机”。
+JS 的引擎与排版引擎是两种概念，前者用于解析 JS，后者用于排版：
+
+| 浏览器 | JS 虚拟机 | 排版引擎 |
+| --- | --- | --- |
+| Chrome | V8 | WebKit => Blink |
+| Safari |  | WebKit |
+| Firfox | SpiderMonkey | Gecko |
+| Edge | ? => V8 | EdgeHTML => Blink |
+| IE | Chakra | Trident |
+|  |  |  |
+
+
+> Blink 是 Google Chrome 浏览器的渲染引擎，V8 是 Blink 内置的 JavaScript 引擎。Chromium 是 Google 公司一个开源浏览器项目，使用 Blink 渲染引擎驱动。Chromium 和 Google Chrome 的关系，可以理解为：Chromium + 集成 Google 产品 = Google Chrome。
+> 
+> 作者：zhangbao90s
+链接：https://juejin.cn/post/6844904055236460558
+
+
+WebKit: 苹果KHTML排版引擎內部分支，2003年
+Blink: 2013年，Chromium 修改后的 WebKit 渲染引擎正式分支为 Blink 引擎。
+EdgeHTML: Microsoft Edge 使用了名为 EdgeHTML 的排版引擎，该引擎是 Trident 的一个分支。
+Trident: 从 IE4.0 开始就是该引擎。
+
+
+苹果在KDE上发展出来了webkit，只供自家使用，直到将webkit开源把谷歌拉进，才有了webkit的繁荣，一段时间后，谷歌不满苹果的控制，fork出了blink(blink也属于webkit！
+
+2018年，微软正式宣布桌面版 Edge 浏览器将采用 Chromium 内核。
+
+- [x] iOS 上使用什么排版引擎什么 JS 虚拟机
+苹果的政策，iOS 上几乎所有浏览器用的都是 WebKit 内核。
+因为苹果不想任何人分享App Store的利益，参考iOS平台上孱弱的PWA实现就明白了。
+
+跨平台桌面端开发框架Electron：它通过使用 Node.js（作为后端）和 Chromium 的渲染引擎（作为前端）完成跨平台的桌面GUI应用程序的开发。VSCode 是使用该框架开发的。
+
+---
+
+`Cmd+Opt+J`打开浏览器控制台
