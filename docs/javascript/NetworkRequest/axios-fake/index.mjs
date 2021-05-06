@@ -42,18 +42,16 @@ class Axios {
     this.options.method = this.customOptions.method || 'GET';
     this.options.url = this.customOptions.url;
     this.options.baseURL = this.customOptions.baseURL || Axios.publicConfig.baseURL;
+    this.options.body = this.customOptions.body;
     this.format();
   }
   format() {
-    const {
-      method,
-      ...otherOptions
-    } = this.customOptions;
+    // TODO
+    const otherOptions = this.customOptions.options;
     
     if (method === 'GET' && typeof otherOptions.params === 'object') {
       this.options.url = `${this.options.url}?${qs.stringify(otherOptions.params)}`;
     }
-
   }
   request() {
     console.log(this.options)
@@ -63,14 +61,14 @@ class Axios {
     this.init({
       url,
       method: 'GET',
-      ...options
+      options
     })
   }
   post(url, options) {
     this.init({
       url,
       method: 'POST',
-      ...options
+      options
     })
   }
 }
@@ -92,7 +90,18 @@ axios.post = (url, options) => {
 }
 axios.request = (options) => {
   const axios = new Axios({});
-  axios.init(options);
+  const {
+    url,
+    method,
+    baseURL,
+    ...otherOptions,
+  } = options;
+  axios.init({
+    url,
+    method,
+    baseURL,
+    options: otherOptions,
+  });
   return axios.request(options);
 }
 axios.create = (options) => {

@@ -8,49 +8,59 @@ console.dir(axios)
  * get 用法
  *  params 可选
  */
-const params = {
-  params: {
-    id: 12345
-  }
-};
-axios.get('/api/xhr/user', params).then(function (response) {
-  // 处理成功情况
-  console.log('then 1', response);
-}).catch(function (error) {
-  // 处理错误情况
-  console.log('catch', error);
-}).then(function (a) {
-  // 总是会执行
-  console.log('then 2', a);
-});
-
+const getUserDemo = () => {
+  const params = {
+    params: {
+      id: 12345
+    }
+  };
+  axios.get('/api/xhr/user', params).then(function (response) {
+    // 处理成功情况
+    console.log('then 1', response);
+  }).catch(function (error) {
+    // 处理错误情况
+    console.log('catch', error);
+  }).then(function (a) {
+    // 总是会执行
+    console.log('then 2', a);
+  });
+}
+document.querySelector('#getUserDemo').addEventListener('click', getUserDemo);
 
 /**
  * 错误处理
  */
-axios.get('/api/xhr/error', {}).then(function (response) {
-  // 处理成功情况
-  console.log('then 1', response);
-}).catch(function (error) {
-  // 处理错误情况
-  console.log('catch', error);
-}).then(function (a) {
-  // 总是会执行
-  console.log('then 2', a);
-});
+const errorDemo = () => {
+  axios.get('/api/xhr/error', {}).then(function (response) {
+    // 处理成功情况
+    console.log('then 1', response);
+  }).catch(function (error) {
+    // 处理错误情况
+    console.log('catch', error);
+  }).then(function (a) {
+    // 总是会执行
+    console.log('then 2', a);
+  });
+}
+document.querySelector('#errorDemo').addEventListener('click', errorDemo);
+
 /**
  * 等待 pending
  */
-axios.get('/api/xhr/pending', { time: 3000 }).then(function (response) {
-  // 处理成功情况
-  console.log('then 1', response);
-}).catch(function (error) {
-  // 处理错误情况
-  console.log('catch', error);
-}).then(function (a) {
-  // 总是会执行
-  console.log('then 2', a);
-});
+const pendingDemo = () => {
+  axios.get('/api/xhr/pending', { time: 3000 }).then(function (response) {
+    // 处理成功情况
+    console.log('then 1', response);
+  }).catch(function (error) {
+    // 处理错误情况
+    console.log('catch', error);
+  }).then(function (a) {
+    // 总是会执行
+    console.log('then 2', a);
+  });
+}
+
+document.querySelector('#pendingDemo').addEventListener('click', pendingDemo);
 
 /**
  * post 用法
@@ -138,6 +148,10 @@ const interfaceResponse = {
   // 在浏览器中则是 XMLHttpRequest 实例
   request: {}
 }
+
+
+
+document.querySelector('#interfaceResponse').addEventListener('click', interfaceResponse);
 
 /**
  * 拦截器
