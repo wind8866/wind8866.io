@@ -35,3 +35,89 @@ typeof 后跟一个函数返回'function'
 typeof 支持大数类型判断
 
 现在JS有8种数据类型。
+- Null
+- Undefined
+- String
+  - ''
+  - 'aaa'
+- Number
+  - 0
+  - NaN
+  - Infinity
+  - 1000000000000000000000("1e+21")
+  - 0x
+- Boolean
+  - false
+  - true
+- Symbal
+- Object
+- BigInt
+
+---
+### 类型转换
+
+对于类型转换，我们应该从几个方向去考虑：
+1、转换方法是否安全：例如 `localStorage.getItem('a')` 可能返回 null，如果对结果使用 `toString` 将会报错。
+2、转化的类型是否是自己想要的（处理边缘情况）：`String(0 * 'a').toLocaleString()` 得到的并不是千分位的字符串而是null
+- [ ] object与bigint类型的转换
+
+**转换为字符串类型**
+隐式转换：需要用到字符串的地方，例如：alert、加法运算符`'' + a`、对象的键名key
+显示转换：a.toString()、String(a)、a.valueOf()、a.toLocaleString()、特殊的转换(toLocaleLowerCase、toLocaleUpperCase、toLowerCase、toUpperCase)、数字转字符串（number.toFixed(4)舍、number.toExponential()、number.toPrecision()有效数字）
+
+String() 是最安全的转换方法。
+
+```javascript
+// 需要注意的是特别大的数
+String(1000000000000000000000)
+"1e+21"
+
+// 注意可能返回 NaN 1e+21 Infinity 等数据，注意区分和处理
+isNaN(NaN); //ture
+(1e+40).toLocaleString().replaceAll(',', '');// "10000000000000000000000000000000000000000"
+isFinite(Infinity);// false
+
+// 进制自动转换
+String(0x13333)
+"78643"
+```
+
+**转换为数字类型**
+隐式转换：函数算数和表达式中，例如：一元加运算符`+var`、`+-*/%`等等
+显示转换：Number、特殊的转换（parseInt()、parseFloat()、Math.ceil()、Math.floor()）
+
+Number() 是最安全的转化方法，一元运算符`+`与他执行逻辑相同。
+注意 null 返回 0
+Number 不会进行过多的容错处理，不能转化为数字直接返回NaN
+string	去掉首尾空格后的纯数字字符串中含有的数字。如果剩余字符串为空，则转换结果为 0。否则，将会从剩余字符串中“读取”数字。当类型转换出现 error 时返回 NaN。
+
+```javascript
+Number(undefined)// NaN
+Number(null)// 0
+Number(true)// 1
+Number(false)// 0
+Number('   13  ')// 13
+Number('')// 0
+Number('333.3')// 333.3
+Number('.3')// 0.3
+Number('1.3a')// NaN
+Number('1e+40')// 1e+40
+```
+
+**转化为布尔类型**
+隐式转换：`!`、`if`、
+显示转换：Boolean()
+
+`!` 与 Boolean() 执行逻辑一样
+`null`、`undefined`、`0`、`''`、`NaN`为 false，其他都为true
+
+
+---
+### 运算符
+`+`二元运算符，两侧只要有字符串，则都进行字符串转换。
+`+`一元运算符可进行类型转换，与Number逻辑相同。
+语句 x = value 将值 value 写入 x 然后返回 x。
+`let b = 1;b += 1 + 1;` 结果 b 为 3，因为`+`运算符优先级高于`+=`。
+
+建议用“一行一个行为”
+
