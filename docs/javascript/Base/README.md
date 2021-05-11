@@ -121,3 +121,62 @@ Number('1e+40')// 1e+40
 
 建议用“一行一个行为”
 
+---
+### 值的比较
+如果是字符串比较，使用 Unicode 编码顺序
+不同类型的值进行比较时，JavaScript 会首先将其转化为数字
+`null == undefined`，这是他们自己独立的比较规则，不会出现其他类型的值相等，所以可以利用这个特性。
+而 `> < >= <=` 等运算符的 null 会转化为 0。
+NaN 不等于任何值
+
+我们需要更为可靠的方法来避免潜在的问题，而不是记住古怪的规则。
+对一个值进行比较，我们应该考虑这个值是不是有可能是：`null`、`undefined`、`NaN`
+
+```javascript
+5 > 4
+"apple" > "pineapple"
+"2" > "12"
+undefined == null
+undefined === null
+null == "\n0\n"
+null === +"\n0\n"
+```
+答案
+```
+true
+false
+true
+true
+false
+false：null 有特殊的比较规则，只等于 undefined、null
+false
+```
+
+---
+### 条件分支 if 与 ?
+判断时要注意自动类型转换。
+嵌套的三元运算符并不是特别复杂，但我认为不应该写。[例子](https://zh.javascript.info/ifelse#duo-ge)
+
+---
+### 逻辑运算符
+要转变思想，逻辑运算符仅在判断时进行逻辑转换，返回值并不一定是布尔值，而是寻找第一个对(`||`)或错(`&&`)的值。
+
+```javascript
+// 获取变量列表或者表达式中的第一个真值
+firstName || lastName || nickName || 'Anonymous'
+
+// 寻找第一个假值
+result = value1 && value2 && value3
+
+// 短路执行，真执行第二个值
+sex === 'men' && playGame()
+
+// 假执行第二个值
+loading || submit()
+
+// 替代方案
+if (sex === 'men') palyGame()
+if (!loading) submit()
+```
+
+是否使用逻辑运算符有争议，我现在想的是使用单行的形式替代，替代方案兼顾可读性与便捷性。
