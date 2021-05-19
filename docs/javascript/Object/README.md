@@ -11,6 +11,17 @@ diffObject
 
 Object.assign()
 
+### 垃圾回收
+JS 判断是否进入垃圾回收的依据是该值的可达性。
+定期执行以下“垃圾回收”步骤：
+
+- 垃圾收集器找到所有的根，并“标记”（记住）它们。
+- 然后它遍历并“标记”来自它们的所有引用。
+- 然后它遍历标记的对象并标记 它们的 引用。所有被遍历到的对象都会被记住，以免将来再次遍历到同一个对象。
+- ……如此操作，直到所有可达的（从根部）引用都被访问到。
+- 没有被标记的对象都会被删除。
+
+
 ### this
 this 指向调用者，没有调用者，this 指向 undefined。非严格模式下 this 指向 window。
 箭头函数中的变量都指向定义时的所处环境，this 也是这样，箭头函数没有自己的 this。
@@ -28,3 +39,39 @@ this 指向调用者，没有调用者，this 指向 undefined。非严格模式
 不要过度使用可选链，仅在数据可能为其他非对象类型时使用。例如 user.name ，user是必须为对象的，name是可选的，我们应该写作 user.name?.firstName 而不是 user?.name?.firstName。这样利于调试
 正如前面所说的，如果 ?. 左边部分不存在，就会立即停止运算（“短路效应”）。
 ?.()，?.[]
+
+### Symbol
+Symbol 不会自动转换为字符串，可以使用toSrging转换
+Symbol 用作对象键值的好处：
+1、可以创建私有属性和私有方法。
+2、在使用第三方库时可以防止命名冲突覆盖属性
+
+一般的遍历会忽略 Symbol 作为键值的属性，赋值会
+
+全局 Symbol，使用 Symbol.for("id") 创建，没有 "id" 时创建，有时返回。
+Symbol.keyFor(sym) 接收一个全局 Symbol，返回 Symbol 的名字。
+
+JS官方很多默认的属性是使用 Symbol 实现的
+
+
+### 对象 — 原始值转换
+当一个对象被用在需要原始值的上下文中时，例如，在 alert 或数学运算中，对象会被转换为原始值
+只有三种转化机制：
+- number
+- default
+- string
+
+没有 boolean 机制，因为对象都转化为 true
+
+为了进行转换，JavaScript 尝试查找并调用三个对象方法：
+
+1. 调用 obj[Symbol.toPrimitive](hint) —— 带有 symbol 键 Symbol.toPrimitive（系统 symbol）的方法，如果这个方法存在的话，
+2. 否则，如果 hint 是 "string" —— 尝试 obj.toString() 和 obj.valueOf()，无论哪个存在。
+3. 否则，如果 hint 是 "number" 或 "default" —— 尝试 obj.valueOf() 和 obj.toString()，无论哪个存在。
+4. 如果经过以上结果都没有返回原始类型，则会报错
+
+({}).toString 默认返回 "[Object Object]"，({}).valueOf 默认返回对象自己。
+
+
+
+
