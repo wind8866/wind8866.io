@@ -10,3 +10,21 @@ delete 可以移除属性
 diffObject
 
 Object.assign()
+
+### this
+this 指向调用者，没有调用者，this 指向 undefined。非严格模式下 this 指向 window。
+箭头函数中的变量都指向定义时的所处环境，this 也是这样，箭头函数没有自己的 this。
+
+### 构造函数与 new 操作符
+使用 new 创建对象时。
+1. 创建一个新的空对象并分配给 this
+2. 执行构造函数（通常会修改 this）
+3. 返回 this
+
+函数内可通过使用 new.target 判断调用函数时是否使用了 new 操作符。
+通常构造器没有 return 语句
+
+### 可选链
+不要过度使用可选链，仅在数据可能为其他非对象类型时使用。例如 user.name ，user是必须为对象的，name是可选的，我们应该写作 user.name?.firstName 而不是 user?.name?.firstName。这样利于调试
+正如前面所说的，如果 ?. 左边部分不存在，就会立即停止运算（“短路效应”）。
+?.()，?.[]
