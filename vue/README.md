@@ -51,8 +51,15 @@ Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会�
 - sort()
 - reverse()
 
+事件修饰符（可串联）
+- .stop: 阻止冒泡
+- .prevent: 阻止默认事件
+- .capture: 捕获
+- .self: 只有当前元素才触发事件
+- .once: 只绑定一次，可用于自定义事件
+- .passive: 告诉浏览器你不想阻止事件的默认行为？？
 
-
+[支持按键修饰符和按键别名](https://v3.cn.vuejs.org/guide/events.html#%E6%8C%89%E9%94%AE%E5%88%AB%E5%90%8D)
 
 ```html
 <span>Message: {{ msg }}</span>
@@ -76,6 +83,11 @@ Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会�
 <li v-for="(value, name, index) in myObject">
   {{ index }}. {{ name }}: {{ value }}
 </li>
+<button @click="one, two">支持多事件</button>
+<button @click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
+按键修饰符<input @keyup.enter="submit" />
 ```
 
 ```javascript
@@ -119,6 +131,15 @@ const Counter = {
       },
       getAnswer() {
         // 异步请求
+      },
+      one() {
+        console.log(event.target.tagName)
+      },
+      two() {
+        console.log(event.target.tagName)
+      },
+      warn(message, event) {
+        // event 为 dom 元素
       }
     }
   }
