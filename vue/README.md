@@ -153,3 +153,46 @@ const Counter = {
 - [ ] 在 dom 中不能使用驼峰变量，在项目中应该可以吧，[参考](https://v3.cn.vuejs.org/guide/template-syntax.html#%E5%AF%B9%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%BA%A6%E5%AE%9A)
 - [ ] [维护状态](https://v3.cn.vuejs.org/guide/list.html#%E7%BB%B4%E6%8A%A4%E7%8A%B6%E6%80%81)
 - [ ] 事件处理
+
+---
+
+绑定其他值
+```html
+<input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
+
+<input type="radio" v-model="pick" v-bind:value="a" />
+
+<select v-model="selected">
+  <!-- 内联对象字面量 -->
+  <option :value="{ number: 123 }">123</option>
+</select>
+```
+
+支持修饰符
+* .lazy
+* .number
+* .trim
+
+组件
+
+这里有两种组件的注册类型：全局注册和局部注册。
+
+父级组件可以像处理原生 DOM 事件一样通过 v-on 或 @ 监听子组件实例的任意事件，例如
+```html
+<button @click="$emit('enlargeText', 0.1)">
+  Enlarge text
+</button>
+<blog-post ... @enlarge-text="postFontSize += $event"></blog-post>
+```
+组件章节是重中之重。
+
+可以通过插槽向组件中添加内容，<slot>
+
+可以使用template与is属性设置动态组件
+<component :is="currentTabComponent"></component>
+
+
+- [ ] 不使用v-model怎么赋值给select
+
+
+
