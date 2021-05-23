@@ -33,7 +33,7 @@ Vue 插入/更新/移除元素时自动应用过渡效果。
 Data Property 定义的数据，就在顶级组件实例和 $data 中暴露出来。
 直接将不包含在 data 中的新 property 添加到组件实例是可行的。但由于该 property 不在背后的响应式 $data 对象内，所以 Vue 的响应性系统不会自动跟踪它。
 Vue 使用 $ 前缀通过组件实例暴露自己的内置 API。它还为内部 property 保留 _ 前缀。你应该避免使用这两个字符开头的的顶级 data property 名称。
-组件的 methods 里使用防抖函数，组件实例会共享，应该放在声明周期里。
+组件的 methods 里使用防抖函数，组件实例会共享，应该放在生命周期里。
 模版中使用较为复杂的表达式，应该替换为计算属性。
 模板中调用方法和计算属性都能达到目的，但是计算属性是根据所以依赖的值进行计算的，值不改变，不会重新计算。
 [计算属性还支持setter](https://v3.cn.vuejs.org/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84-setter)
@@ -88,6 +88,14 @@ Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会�
   Submit
 </button>
 按键修饰符<input @keyup.enter="submit" />
+
+
+<input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
+<input type="radio" v-model="pick" v-bind:value="a" />
+<select v-model="selected">
+  <!-- 内联对象字面量 -->
+  <option :value="{ number: 123 }">123</option>
+</select>
 ```
 
 ```javascript
@@ -108,7 +116,7 @@ const Counter = {
       myObject: {// 内部应该是使用 Object.keys()
         title: 'How to do lists in Vue',
         author: 'Jane Doe',
-      }
+      },
     },
     watch: {
       question(newQuestion, oldQuestion) {
@@ -156,25 +164,18 @@ const Counter = {
 
 ---
 
-绑定其他值
-```html
-<input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
 
-<input type="radio" v-model="pick" v-bind:value="a" />
+## 组件
 
-<select v-model="selected">
-  <!-- 内联对象字面量 -->
-  <option :value="{ number: 123 }">123</option>
-</select>
-```
+组件章节是重中之重。
 
 支持修饰符
 * .lazy
 * .number
 * .trim
 
-组件
-
+- [ ] 不使用v-model怎么赋值给select
+- [ ] 单独拎出来
 这里有两种组件的注册类型：全局注册和局部注册。
 
 父级组件可以像处理原生 DOM 事件一样通过 v-on 或 @ 监听子组件实例的任意事件，例如
@@ -184,7 +185,6 @@ const Counter = {
 </button>
 <blog-post ... @enlarge-text="postFontSize += $event"></blog-post>
 ```
-组件章节是重中之重。
 
 可以通过插槽向组件中添加内容，<slot>
 
@@ -192,7 +192,6 @@ const Counter = {
 <component :is="currentTabComponent"></component>
 
 
-- [ ] 不使用v-model怎么赋值给select
 
 
 
