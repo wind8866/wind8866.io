@@ -192,6 +192,85 @@ const Counter = {
 <component :is="currentTabComponent"></component>
 
 
+---
+组件章节
+使用app.component创建的是全局注册的组件，无需引入即可在全局使用。
+局部组件在使用时必须现在compontents中声明，局部组件使用以下语法
+```javascript
+const app = Vue.createApp({
+  components: {
+    'component-a': ComponentA,
+    'component-b': ComponentB
+  }
+})
+```
 
+如果你想要将一个对象的所有 property 都作为 prop 传入，你可以使用不带参数的 v-bind (取代 v-bind:prop-name)。
+```html
+<blog-post v-bind="post"></blog-post>
+```
+vue也推崇单向数据流，子组件不应该更改父组件状态
+
+props的各种写法
+* 默认值
+* 数据类型，多种类型
+    * Array
+    * Object
+    * Date
+    * Function
+    * 4种基本类型
+    * 构造函数
+* 是否必须
+* 自检验
+
+
+```javascript
+app.component('my-component', {
+  props: {
+    // 基础的类型检查 (`null` 和 `undefined` 会通过任何类型验证)
+    propA: Number,
+    // 多个可能的类型
+    propB: [String, Number],
+    // 必填的字符串
+    propC: {
+      type: String,
+      required: true
+    },
+    // 带有默认值的数字
+    propD: {
+      type: Number,
+      default: 100
+    },
+    // 带有默认值的对象
+    propE: {
+      type: Object,
+      // 对象或数组默认值必须从一个工厂函数获取
+      default: function() {
+        return { message: 'hello' }
+      }
+    },
+    // 自定义验证函数
+    propF: {
+      validator: function(value) {
+        // 这个值必须匹配下列字符串中的一个
+        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+      }
+    },
+    // 具有默认值的函数
+    propG: {
+      type: Function,
+      // 与对象或数组默认值不同，这不是一个工厂函数 —— 这是一个用作默认值的函数
+      default: function() {
+        return 'Default function'
+      }
+    }
+  }
+})
+```
+
+当组件返回单个根节点时，非 prop attribute 将自动添加到根节点的 attribute 中。事件监听器也是如此
+
+可以禁用attribute继承，然后可以访问组件的 $attrs property，该 property 包括组件 props 和 emits property 中未包含的所有属性
+多根节点不能继承。
 
 
