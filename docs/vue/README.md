@@ -193,7 +193,8 @@ const Counter = {
 
 
 ---
-组件章节
+
+### 组件章节
 使用app.component创建的是全局注册的组件，无需引入即可在全局使用。
 局部组件在使用时必须现在compontents中声明，局部组件使用以下语法
 ```javascript
@@ -272,5 +273,15 @@ app.component('my-component', {
 
 可以禁用attribute继承，然后可以访问组件的 $attrs property，该 property 包括组件 props 和 emits property 中未包含的所有属性
 多根节点不能继承。
+
+---
+### 插槽
+父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。
+slot中加入元素可以设置插槽的默认值`<slot>Submit</slot>`
+v-slot 只能添加在 `<template>`上。
+可以使插槽中的内容获取子组件的属性，在子组件中使用`<slot :item="item"></slot>`，在父组件中使用v-slot属性`<template v-slot:default="slotProps">`来接受。
+缩写：v-slot:header 可以被重写为 #header
+
+- [ ] [解构插槽 Prop](https://v3.cn.vuejs.org/guide/component-slots.html#%E8%A7%A3%E6%9E%84%E6%8F%92%E6%A7%BD-prop)
 
 
