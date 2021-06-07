@@ -64,6 +64,77 @@ declare module '*.less' {
 }
 ```
 
+### eslint
+
+#### 安装步骤
+1、安装 eslint：`yarn add --dev eslint`
+
+2、生成 默认配置文件：`npx eslint --init`，生成默认配置的时候会提示安装的依赖： 
+```
+✔ How would you like to use ESLint? · style
+✔ What type of modules does your project use? · esm
+✔ Which framework does your project use? · react
+✔ Does your project use TypeScript? · Yes
+✔ Where does your code run? · browser
+✔ How would you like to define a style for your project? · guide
+✔ Which style guide do you want to follow? · airbnb
+✔ What format do you want your config file to be in? · JavaScript
+✔ Would you like to install them now with npm? · No / Yes
+```
+
+手动或自动安装依赖。
+- eslint-plugin-react📌
+- @typescript-eslint/eslint-plugin📌
+- eslint-config-airbnb📌
+- eslint-plugin-import📌
+- eslint-plugin-jsx-a11y📌
+- eslint-plugin-react-hooks📌
+- @typescript-eslint/parser📌
+
+生成的配置文件
+```javascript
+module.exports = {
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+    }
+};
+```
+
+3、IDE 配置 vscode 需要安装 ESLint 插件
+
+4、进行配置主要是修改规范集：extends，plugins
+
+5、自定义配置修改 rules
+
+#### 配置
+可以使用 [globals](https://cn.eslint.org/docs/user-guide/configuring#specifying-globals) 定义全局变量，否则 eslint 报错。
+指定插件时，可省略前缀 eslint-plugin-。
+规则：
+- off 0
+- warn 1
+- error 2
+
+整个文件不进行 eslint 警告提示：`/* eslint-disable */`
+[overrides](https://cn.eslint.org/docs/user-guide/configuring#disabling-rules-only-for-a-group-of-files) 可以禁止一组文件进行检查。
 
 
 ---
