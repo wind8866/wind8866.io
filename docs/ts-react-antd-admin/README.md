@@ -1,4 +1,4 @@
-
+[toc]
 
 # 记录一下开发过程
 
@@ -135,6 +135,67 @@ module.exports = {
 
 整个文件不进行 eslint 警告提示：`/* eslint-disable */`
 [overrides](https://cn.eslint.org/docs/user-guide/configuring#disabling-rules-only-for-a-group-of-files) 可以禁止一组文件进行检查。
+
+### babel
+[Preset 顺序是相反的](https://babel.docschina.org/docs/en/presets/#preset-%E9%A1%BA%E5%BA%8F)
+[babel 7 已可以不需要 ts-loader](https://stackoverflow.com/a/52323181/10422553)
+[babel 支持运行时不引入react的配置](https://zh-hans.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#manual-babel-setup)，[github issue也有](https://github.com/gatsbyjs/gatsby/issues/28657)
+
+#### 如何安装
+1、[首先看官方指引](https://babeljs.io/setup)
+安装
+- `babel-loader`：webpack 支持
+- `@babel/core`：Babel 编译器核心
+
+2、修改 webpack 配置
+注意 ts-loader 和 babel-loader 只可选其一。
+```javascript
+{
+  test: /\.tsx?$/,
+  exclude: /node_modules/,
+  use: {
+    loader: 'babel-loader',
+  }
+}
+```
+
+3、安装语法支持
+- `@babel/preset-env`: ECMAScript 语法支持
+- `@babel/preset-react`: JSX 语法支持
+- `@babel/preset-typescript`: ts 语法支持
+
+配置文件
+babel.config.json，解析从后向前
+```json
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-typescript",
+    ["@babel/preset-react", {
+      "runtime": "automatic"
+    }]
+  ],
+  "plugins": []
+}
+```
+
+4、配置支持版本
+在默认配置的基础上不支持 IE11
+https://github.com/browserslist/browserslist
+
+```
+# .browserslistrc
+> 0.5%
+last 2 versions
+Firefox ESR
+not IE 11
+not dead
+```
+
+#### 问题
+- [ ] antd-pro ts版本如何编译成 js 版本的？
+- [ ] 如何加入 stage 的支持？可不可加？
+- [ ] 是不是 import 的一些语法不支持？
 
 
 ---
