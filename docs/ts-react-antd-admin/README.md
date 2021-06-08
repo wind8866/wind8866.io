@@ -141,6 +141,19 @@ module.exports = {
 [babel 7 已可以不需要 ts-loader](https://stackoverflow.com/a/52323181/10422553)
 [babel 支持运行时不引入react的配置](https://zh-hans.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#manual-babel-setup)，[github issue也有](https://github.com/gatsbyjs/gatsby/issues/28657)
 
+#### ts-loader 与 babel
+起初有以下几种方案
+1. typescript + ts-loader
+2. ts-loader + babel-loader + fork-ts-checker-webpack-plugin
+3. typescript + ts-loader + awesome-typescript-loader
+
+typescript 自身带有语言转换和类型检查的功能，默认两者都执行，所以可能会慢，所以才有了第三种方案，typescript 仅进行语法转换，awesome-typescript-loader 用于
+
+TODO:
+https://juejin.cn/post/6844904052094926855
+https://www.cnblogs.com/vvjiang/p/12057811.html
+https://juejin.cn/post/6844903792865984520
+
 #### 如何安装
 1、[首先看官方指引](https://babeljs.io/setup)
 安装
