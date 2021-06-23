@@ -31,15 +31,13 @@
       e.stopPropagation();
     })
     id1.addEventListener('click', function(e) {
+      console.log(this, e.currentTarget);
       console.log('id1', e);
-    })
-    id2.addEventListener('contextmenu', function(e) {
-      console.log('id2 right', e);
-      e.stopImmediatePropagation();
     })
     id1.addEventListener('contextmenu', function(e) {
       console.log('id1 right', e);
     })
+    
   </script>
 </body>
 </html>
