@@ -112,7 +112,7 @@ const randomInteger = (min, max) => {
 }
 ```
 
-### 字符串
+## 字符串
 字符串的内部格式始终是 UTF-16，它不依赖于页面编码。
 感觉模版函数没什么用，搜索到的文章页比较少
 特殊字符 `\`、`\n`、`\u{X…XXXXXX}`、`\t  `、`\'`、`\\`。
@@ -183,3 +183,15 @@ const extractCurrencyValue = (str) => {
   return Number(numStr);
 }
 ```
+
+## 数组
+push与pop比shift与unshift性能更高，因为不用重新编号。
+当我们修改数组的时候，length 属性会自动更新。准确来说，它实际上不是数组里元素的个数，而是最大的数字索引值加一。
+数组没有 Symbol.toPrimitive，也没有 valueOf，它们只能执行 toString 进行转换
+不要使用 `==` 运算符判断。
+
+注意区分splice黏结、slice切下、split分开字符串
+reducer的用法（数组元素求和）：`[1, 2, 3, 4, 5, 6].reduce((sum, item) => (sum + item), 0)`
+find，filter，map，除了 sort 是一个特例，都接受一个可选的附加参数 thisArg，用与传递this。
+## 数组方法
+主要是应用

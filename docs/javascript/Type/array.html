@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  let sum = 0;
+  const sumInput = () => {
+    const number = window.prompt('number');
+    // 📌：isNaN 与 Number.isNaN 不同
+    if (isNaN(number)){
+      return sum;
+    } else {
+      sum += Number(number);
+      sumInput();
+    }
+  }
+  // sumInput()
+  console.log(sum);
+
+  // 递归方法
+  // TODO:?
+  const sumInputLoop = (sum) => {
+    let sumTemp = 0;
+    if (sum != null) {
+      sumTemp = sum;
+    }
+    const number = window.prompt('number');
+    if (isNaN(number)){
+      alert(sumTemp);
+      return sumTemp;
+    } else {
+      sumTemp += Number(number);
+      sumInput(sumTemp);
+    }
+  }
+  sumInputLoop();
+
+  // TODO：最大子数组
+  // const getMaxSubSum = (arr) => {
+  //   let max = arr[0];
+  //   let index = 1;
+  //   while (index < arr.length) {
+  //     if (arr[index] + arr[index - 1] > max) {
+  //       max = arr[index] + arr[index - 1]
+  //     }
+  //     ++index;
+  //   }
+  // }
+  // getMaxSubSum([-1, 2, 3, -9])// 5
+  // getMaxSubSum([100, -9, 2, -3, 5])// 100
+  // getMaxSubSum([-1, -2, -3])// 0
+
+  const camelize = (str) => {
+    const arr = str.split('-');
+    if (arr.length === 1) {
+      return str;
+    }
+    const targetStr = arr.map((item, index) => {
+      if (index === 0) {
+        return item;
+      }
+      // O(n^2)
+      // const targetStrArr = [...item];
+      // targetStrArr[0] = targetStrArr[0].toLocaleUpperCase()
+      // return targetStrArr.join('');
+
+      return item[0].toLocaleUpperCase() + item.split(1);
+    }).join('');
+    console.log(targetStr);
+    return targetStr;
+  }
+  camelize("background-color")
+  camelize("list-style-image")
+  camelize("-webkit-transition")
+
+
+  const filterRange = (arr, min, max) => {
+    return arr.filter(item => item >= min && item <= max);
+  }
+  const filterRangeInPlace = (arr, min, max) => {
+    // https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2gy9m/
+    // 还不一样，那个是排序好的，能够一直往前赶，这个不行
+    let index = 0;
+    while (index < arr.length) {
+      if (arr[index] < min || arr[index] > max) {
+        arr.splice(index, 1)
+      } else {
+        index++;
+      }
+    }
+    return arr;
+  }
+  
+  let arr = [5, 3, 8, 1];
+  let filtered = filterRangeInPlace(arr, 1, 4);
+  console.log( filtered ); // 3,1（匹配值）
+  console.log( arr ); // 5,3,8,1（未修改）
+
+
+  {
+    let arr = [5, 2, 1, -10, 8];
+    // a - b是升序
+    arr.sort((a, b) => b - a);
+    console.log( arr ); // 8, 5, 2, 1, -10
+  }
+
+  {
+    class Calculator {
+      constructor() {
+        this.method = {
+          '+': (a, b) => a + b,
+          '-': (a, b) => a - b,
+        }
+      }
+      addMethod(sign, fun) {
+        this.method[sign] = fun;
+      }
+      calculate(str) {
+        const [a, sign, b] = str.split(/\s+/)
+        if (this.method[sign]) {
+          const result = this.method[sign](Number(a), Number(b));
+          console.log(result);
+          return result;
+        } else {
+          console.error(a, sign, b);
+          return NaN;
+        }
+      }
+    }
+    let calc = new Calculator();
+    calc.calculate('3 + 7');
+    calc.calculate('3 - 7');
+
+    calc.addMethod("*", (a, b) => a * b);
+    calc.addMethod("/", (a, b) => a / b);
+    calc.addMethod("**", (a, b) => a ** b);
+    
+    calc.calculate("2 ** 3");
+  }
+
+  {
+    let john = { name: "John", age: 25 };
+    let pete = { name: "Pete", age: 30 };
+    let mary = { name: "Mary", age: 28 };
+
+    let users = [ john, pete, mary ];
+
+    let names = users.map(item => item.name).join(', ');
+
+    console.log( names ); // John, Pete, Mary
+  }
+
+  {
+    let users = [
+      {id: 'john', name: "John Smith", age: 20},
+      {id: 'ann', name: "Ann Smith", age: 24},
+      {id: 'pete', name: "Pete Peterson", age: 31},
+    ];
+    const groupById = (list) => {
+      return list.reduce((obj, item) => {
+        obj[item.id] = item;
+        return obj;
+      }, {})
+    }
+
+    let usersById = groupById(users);
+    console.log(usersById);
+  }
+</script>
+</body>
+</html>
