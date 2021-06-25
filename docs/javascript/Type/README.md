@@ -195,3 +195,42 @@ reducer的用法（数组元素求和）：`[1, 2, 3, 4, 5, 6].reduce((sum, item
 find，filter，map，除了 sort 是一个特例，都接受一个可选的附加参数 thisArg，用与传递this。
 ## 数组方法
 主要是应用
+
+## Iterble object 可迭代对象
+本质是设置对象的 Symbol.iterator 属性，该属性返回一个带有 next 的函数，每次迭代时会被自动执行。该函数必须返回 `{done: Boolean, value: any}`。
+Iterable 是实现了 Symbol.iterator 方法的对象，Array-like 是有索引和 length 属性的对象。一个可迭代对象也许不是类数组对象。反之亦然。
+全局方法 Array.from 可以接受一个可迭代或类数组的值，并从中获取一个“真正的”数组。
+
+因为 String.ptototype.slice 不支持 UTF-16 的字符串，可以自己写一个。
+```javascript
+const slice = (str, start, end) => {
+  return Array.from(str).slice(start, end).join();
+}
+```
+
+## Map and Set （映射和集合）
+Map 可以使用任意类型的值作为 key，但不要使用类似数组下标的方式去存取值，应使用 Map.set 与 Map.get。
+Map 比较键的时候使用 === ，但也支持 NaN
+Object.fromEntries 可以将二维数组转化为对象，也可将map转化为对象
+迭代时顺序为插入的顺序。
+
+Set 是值的集合，没有键
+
+### 练习
+
+过滤字谜(官方使用的方法也很好)
+```javascript
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+const aclean = (arr) => {
+  const set = new Set();
+  const result = [];
+  return arr.filter(item => {
+    const resultText = Array.from(item.toLocaleLowerCase()).sort().join();
+    const has = !set.has(resultText);
+    set.add(resultText)
+    return has;
+  })
+}
+aclean(arr); // "nap,teachers,ear" or "PAN,cheaters,era"
+```
+
