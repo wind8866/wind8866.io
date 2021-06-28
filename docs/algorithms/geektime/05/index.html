@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+https://github.com/wangzheng0822/algo/blob/master/javascript/06_linkedlist/SinglyLinkedList.js
+<script src="./index.js"></script>
+<script>
+  const a = new SingleLinkedList(2, 3, 5);
+  a.unshift(1);
+  a.push(6);
+  a.toString();
+  console.log(a.getIndex(2));
+  console.log(a.find(3));
+  console.log()
+  /**
+  * 特性：
+  * 值支持任意类型：NaN、undefined、null
+  */
+  console.log(a.delete(3));
+  a.toString();
+  a.forEach((val, index) => {
+    console.log(val, index);
+  })
+  console.log(a.shift())
+  a.toString();
+  console.log(a.pop())
+  a.toString();
+
+  for (let val of a) {
+    console.log(val);
+  }
+</script>
+</body>
+</html>
