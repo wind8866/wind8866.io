@@ -234,3 +234,40 @@ const aclean = (arr) => {
 aclean(arr); // "nap,teachers,ear" or "PAN,cheaters,era"
 ```
 
+## WeakMap and WeakSet
+可以类比数组理解这两个类型，如果一个对象值作为数组中的一个值，指向该对象的引用都被清除后，不会进入垃圾回收，因为在数组中还保留引用。
+但若该对象保留在 WeakMap 和 WeakSet 就不会被保留而进入垃圾回收。
+WeakMap 和 WeakSet 的 key 必须是对象，都不能迭代，因为是不稳定的，进入垃圾回收会在空闲时执行。
+使用场景：
+存储额外的数据（关联），例如讲一个用户组的数据与用户列表关联。当该用户组不再使用时只需删除用户组的数据即可。
+缓存，复杂的运算，可以将结果缓存起来，只需删除缓存值，便可自动删除缓存结果。
+
+个人感觉就是很复杂的数据关联，复杂的操作可能会产生内存泄漏，该数据类型提供了一个简单的能够将数据串起来的能力，只需清除数据串的入口，就能清除整个数据串。
+
+### 练习
+```javascript
+let messages = [
+  {text: "Hello", from: "John"},
+  {text: "How goes?", from: "John"},
+  {text: "See you soon", from: "Alice"}
+];
+const weakMap = new WeakMap();
+weakMap.add(message[0], { read: false, date: ''});
+weakMap.add(message[1], { read: false, date: ''});
+weakMap.add(message[2], { read: false, date: ''});
+
+// 阅读
+const read = (id) => {
+  if (!weakMap.has(message[id])) {
+    return false;
+  }
+  weakMap.set(message[id], { read: true, date: new Date() });
+}
+
+// 其他代码
+messages.shift();
+```
+
+## Object.keys values entries
+Array、Set、Map 都支持 keys、values、entries 属性，而 Object 放在了对象本身上（构造函数上）。
+Object.keys 返回数组，而 map.keys 返回的是可迭代对象。
