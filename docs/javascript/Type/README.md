@@ -271,3 +271,45 @@ messages.shift();
 ## Object.keys values entries
 Array、Set、Map 都支持 keys、values、entries 属性，而 Object 放在了对象本身上（构造函数上）。
 Object.keys 返回数组，而 map.keys 返回的是可迭代对象。
+
+## 解构
+解构可以设置默认值，更改默认名
+
+
+一些应用场景
+```javascript
+let {userName: name = 'admin', age = 22} = {userName: 'zhangsan', age: 14};
+
+let [item1, item2, ...rest] = ['甲组第一名', '乙组第一名', '甲组第二名', '乙组第二名'];
+
+// 剔除状态中多余的值，提交给接口
+const {
+  loading,
+  isEdit,
+  ...result,
+} = this.state;
+request(result).then(res => {
+  // ...
+})
+
+```
+
+
+时间戳
+
+
+```javascript
+const date = new Date();// Tue Jun 29 2021 22:40:26 GMT+0800 (中国标准时间)
+
+// YYYY-MM-DD HH:ss:mm
+const padStart = (num, digit = 2) => {
+  return num.toString().padStart(digit, '0');
+}
+const formatDate = (date) => {
+  const formatDate = `${date.getFullYear()}-${padStart(date.getMonth() + 1)}-${padStart(date.getDate())}`;
+  const formatTime = `${padStart(date.getHours())}:${padStart(date.getMinutes())}:${padStart(date.getSeconds())}`
+  return `${formatDate} ${formatTime}`
+}
+formatDate(date);// 2021-06-29 22:57:18
+
+```
