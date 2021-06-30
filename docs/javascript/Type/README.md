@@ -294,22 +294,55 @@ request(result).then(res => {
 
 ```
 
+## Date
+- 时间戳：1970-01-01 00:00:00 以来经过的毫秒数
+- 月份从0开始计数
+- getDay 从 0 开始计数，表示星期日
+- 设置超出范围的值，Date会自动校准
+- 使用 getFullYear 而非 getYear
+- 大致有以下几类API
+  - get: getFullYear、getDate 等6个
+  - getUTC
+  - set: setFullYear、setFullYear 等5个
+  - setUTC
+  - getTime、setTime、getTimezoneOffset
+  - to: toString、toLocaleTimeString
+  - valueOf
+- 原型方法
+  - Date.now()
+  - Date.parse()
 
-时间戳
+## JSON
+- JSON.stringify(value[, replacer, space])
+  - 可以通过 toJSON 方法改变输出
+- JSON.parse(str, [reviver])
+
+支持的数据类型
+- Object
+- Array
+- null
+- String
+- Boolean
+- Number
 
 
-```javascript
-const date = new Date();// Tue Jun 29 2021 22:40:26 GMT+0800 (中国标准时间)
 
-// YYYY-MM-DD HH:ss:mm
-const padStart = (num, digit = 2) => {
-  return num.toString().padStart(digit, '0');
-}
-const formatDate = (date) => {
-  const formatDate = `${date.getFullYear()}-${padStart(date.getMonth() + 1)}-${padStart(date.getDate())}`;
-  const formatTime = `${padStart(date.getHours())}:${padStart(date.getMinutes())}:${padStart(date.getSeconds())}`
-  return `${formatDate} ${formatTime}`
-}
-formatDate(date);// 2021-06-29 22:57:18
+```js
+let room = {
+  number: 23
+};
 
+let meetup = {
+  title: "Conference",
+  participants: [{name: "John"}, {name: "Alice"}],
+  place: room // meetup 引用了 room
+};
+
+room.occupiedBy = meetup; // room 引用了 meetup
+
+const json = JSON.stringify(meetup, function replacer(key, value) {
+  // console.log(key, value)
+  return (key == 'occupiedBy') ? undefined : value;
+}, 2);
+console.log(json);
 ```
