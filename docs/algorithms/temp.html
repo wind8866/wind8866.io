@@ -8,36 +8,37 @@
 </head>
 <body>
   <script>
+    "use strict";
     // https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2zsx1/
     // 时间复杂度：O(n^2)；空间复杂度：O(1)
-    function maxProfit(prices) {
-      let i = 0;
-      let j = 1;
-      let sum = 0;
-      while (i < prices.length - 1) {
-        if (prices[j] > prices[i]) {
-          if (j + 1 < prices.length) {
-            if (prices[j] > prices[j + 1]) {
-              sum = sum + prices[j] - prices[i];
-              i = j + 1;
-              j = i;
-            }
-          } else {
-            sum = sum + prices[j] - prices[i];
-            break;
-          }
-        } else {
-          i = j;
-        }
-        ++j;
-        if (j === prices.length) {
-          ++i;
-          j = i + 1;
-        }
-      }
-      return sum;
-    };
-    console.log(maxProfit([6,1,3,2,4,7]))
+    // function maxProfit(prices) {
+    //   let i = 0;
+    //   let j = 1;
+    //   let sum = 0;
+    //   while (i < prices.length - 1) {
+    //     if (prices[j] > prices[i]) {
+    //       if (j + 1 < prices.length) {
+    //         if (prices[j] > prices[j + 1]) {
+    //           sum = sum + prices[j] - prices[i];
+    //           i = j + 1;
+    //           j = i;
+    //         }
+    //       } else {
+    //         sum = sum + prices[j] - prices[i];
+    //         break;
+    //       }
+    //     } else {
+    //       i = j;
+    //     }
+    //     ++j;
+    //     if (j === prices.length) {
+    //       ++i;
+    //       j = i + 1;
+    //     }
+    //   }
+    //   return sum;
+    // };
+    // console.log(maxProfit([6,1,3,2,4,7]))
 
 
 
@@ -61,23 +62,55 @@
     // };
 
     // 时间复杂度：最好 O(1) 最坏?
-    function containsDuplicate(nums) {
-      // 使用双指针
-      const length = nums.length;
-      let step = 0;
-      while (step < length - 1) {
-        let i = 1;
-        while (step + i <= length - i) {
-          if (nums[step] === nums[step + i] || nums[step] === nums[length - i]) {
-            return true;
+    // function containsDuplicate(nums) {
+    //   // 使用双指针pro
+    //   const length = nums.length;
+    //   let step = 0;
+    //   while (step < length - 1) {
+    //     let i = 1;
+    //     while (step + i <= length - i) {
+    //       if (nums[step] === nums[step + i] || nums[step] === nums[length - i]) {
+    //         return true;
+    //       }
+    //       i++;
+    //     }
+    //     step++;
+    //   }
+    //   return false;
+    // };
+    // containsDuplicate([1, 2, 3, 4])
+
+
+    // 时间复杂度：O(n)，空间复杂度：O(1)
+    function plusOne(digits) {
+      for (let i = digits.length - 1; i >= 0; i--) {
+        ++digits[i];
+        if (digits[i] < 10) {
+          break;
+        } else {
+          digits[i] = 0;
+          if (i === 0) {
+            i = 1;
+            digits.unshift(0)
           }
-          i++;
         }
-        step++;
       }
-      return false;
+      return digits;
     };
-    containsDuplicate([1, 2, 3, 4])
+    console.log(plusOne([9]));
+
+    function f1() {
+      console.log(arguments);
+      // console.log(f1.arguments);
+    }
+    f1(1, 2, 3, 4)
+    console.log(0o12);
+
+    if (function ccc(){}) {
+      console.log(333);
+    }
+    console.dir(function ddd(){});
+    console.dir(() => {});
   </script>
 </body>
 </html>
