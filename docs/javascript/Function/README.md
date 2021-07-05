@@ -75,4 +75,44 @@ length 为期望参数的个数，不包含 ...rest
 可以自定义属性和方法。
 同时使用函数声明和函数表达式，在外部可访问表达式的变量，在内部可访问所有。这样做意义是即使函数表达式的变量被指向 null，函数声明在内部仍然可用。
 
-- [ ] 以上三节的试题
+## new Function
+我们需要从服务器获取代码或者动态地从模板编译函数时才会使用。
+该函数的 [[Environment]] 并不指向当前的词法环境，而是指向全局环境。
+
+## 调度：setTimeout 和 setInterval
+语法：`let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...)`
+弹窗时，内部计时器亦然执行，连续的alert会使两次间隔小于2秒。
+嵌套的 setTimeout 能够精确地设置两次执行之间的延时，而 setInterval 却不能。
+不主动执行清除定时器的操作，会一直占用内存。
+在浏览器环境下，嵌套定时器的运行频率是受限制的。根据 HTML5 标准 所讲：“经过 5 重嵌套定时器之后，时间间隔被强制设定为至少 4 毫秒”。服务端没有该限制，这是历史遗留问题。
+
+请注意，所有的调度方法都不能 保证 确切的延时。
+CPU 过载。
+浏览器页签处于后台模式。
+笔记本电脑用的是电池供电（译注：使用电池供电会以降低性能为代价提升续航）。
+
+#### 试题
+```js
+const printNumbers = (from, to) => {
+  const timer = setInterval(function(){
+    console.log(from++);
+    if (from > to) {
+      clearInterval(timer);
+    }
+  }, 1000)
+}
+printNumbers(3, 10)
+```
+
+```js
+const printNumbers = (from, to) => {
+  function timer(){
+    console.log(from++);
+    if (from <= to) {
+      setTimeout(timer, 1000);
+    }
+  }
+  setTimeout(timer, 1000)
+}
+printNumbers(3, 10)
+```
