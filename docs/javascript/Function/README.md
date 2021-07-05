@@ -116,3 +116,69 @@ const printNumbers = (from, to) => {
 }
 printNumbers(3, 10)
 ```
+
+## 装饰器模式和转发，call/apply
+
+Spread 语法 ... 允许将 可迭代对象 args 作为列表传递给 call。
+apply 仅接受 类数组对象 args。
+apply 可能会更快，因为大多数 JavaScript 引擎在内部对其进行了优化。
+
+如果传入的函数有自己的属性或方法，那么这里的装饰器不能适用。
+- [ ] 节流代码现在是间隔 ms 毫秒执行一次，与给的答案差一次时间间隔
+
+```js
+function cachingDecorator(func, hash) {
+  const map = new Map();
+  function defaultHash(...rest) {
+    return JSON.stringify(rest);
+  }
+  return function() {
+    const key = hash ? hash(arguments) : defaultHash(arguments);
+    if (map.has(key)) {
+      return map.get(key);
+    }
+    
+    const result = func.call(this, ...arguments);
+    map.set(key, result);
+    return result;
+  }
+}
+
+// function slow(x) {
+//   let i = 0;
+//   while (i < 100000) {
+//     i++;
+//   }
+//   return x ** 2;
+// }
+// console.log(slow(12))
+
+// quickly = cachingDecorator(slow);
+// console.log(quickly(123))
+// console.log(quickly(332))
+// console.log(quickly(123))
+
+// const dog = {
+//   run(range) {
+//     console.log(range);
+//     return range * 10;
+//   }
+// }
+// dog.run(12)
+// dog.run = cachingDecorator(dog.run);
+// dog.run(34)
+
+let worker = {
+  slow(min, max) {
+    // console.log(`Called with ${min},${max}`);
+    return min + max;
+  }
+};
+worker.slow = cachingDecorator(worker.slow);
+console.log( worker.slow(3, 5) ); // works
+```
+
+## bind
+一个函数不能被重复绑定：f.bind 返回的函数，仅在创建时记忆上下文。
+绑定后会丢失原函数的属性，如果需要，可使用嵌套函数。
+- [ ] 笔记
