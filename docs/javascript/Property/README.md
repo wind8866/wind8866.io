@@ -1,0 +1,11 @@
+## 属性标志和属性描述符
+configurable 设置为 false 后
+- 不能修改 configurable 标志。
+- 不能修改 enumerable 标志。
+- 不能将 writable: false 修改为 true（反过来则可以）。
+- 不能修改访问者属性的 get/set（但是如果没有可以分配它们）。
+- 仍然可写
+
+## 属性的 getter 和 setter
+一个属性要么是访问器（具有 get/set 方法），要么是数据属性（具有 value），但不能两者都是。
+当写入与获取的属性与其他属性有依赖关系时，使用 getter 或 setter 更适合。

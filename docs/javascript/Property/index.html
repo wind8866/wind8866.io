@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  "use strict";
+
+  let user = {
+    id: 'a1034843',
+    firstName: 'zhang',
+    lastName: 'san',
+    sex: 'man',
+  };
+
+  let descriptor = Object.getOwnPropertyDescriptor(user, 'firstName');
+  console.log(descriptor);
+
+  let descriptor2 = Object.defineProperty(user, 'lastName', {
+    value: 'si'
+  })
+  console.log(descriptor2);
+  console.log(Object.getOwnPropertyDescriptor(user, 'lastName'));
+
+  // 默认值 undefined false
+  Object.defineProperty(user, 'age', {})
+  console.log(Object.getOwnPropertyDescriptor(user, 'age'));
+
+  Object.defineProperty(user, 'sex', {
+    writable: false
+  });
+  console.log(Object.getOwnPropertyDescriptor(user, 'sex'));
+
+  try {
+    user.sex = 'woman';
+  } catch(e) {
+    console.error(e);
+  }
+
+  Object.defineProperty(user, 'lastName', { enumerable: false });
+  for (const [key, value] of Object.entries(user)) {
+    console.log(key, value);
+  }
+  Object.defineProperty(user, 'id', { configurable: false });
+  // delete user.id;
+
+  console.log(Object.getOwnPropertyDescriptors(user))
+
+  // 带描述属性的浅拷贝
+  let user2 = Object.defineProperties({}, Object.getOwnPropertyDescriptors(user));
+  console.log(user2, Object.getOwnPropertyDescriptors(user2));
+</script>
+</body>
+</html>
