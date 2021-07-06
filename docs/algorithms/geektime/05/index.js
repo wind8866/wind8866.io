@@ -224,5 +224,6 @@ class SingleLinkedList {
 }
 
 // export default SingleLinkedList;
-// TODO: 值不支持 undefined
+// 值不支持 undefined 完成
 // TODO: 根据指针删除指定值
+// TODO: toJSON
