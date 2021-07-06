@@ -1,33 +1,56 @@
+const init = Symbol('init');
 class SingleLinkedList {
   constructor(...values) {
+    console.log(new.target);
     this.headValue = Symbol('headValue');
+    this.length = 0;
+    // 哨兵，始终存在
     this.nodes = { next: null, value: this.headValue };
-    this.init(...values);
+    this[init](...values);
+  }
+  /**
+   * 静态方法：类数组对象
+   * @param {*} arrayLik ArrayLik
+   * @returns {SingleLinkedList}
+   */
+  static toLinkedList(arrayLik) {
+    try {
+      const array = Array.from(arrayLik);
+      return new SingleLinkedList(...array)
+    } catch(e) {
+      console.error(e)
+      return new Error(e);
+    }
   }
   /**
    * 初始化
    * @param  {...any} values 参数
    */
-  init(...values) {
+  [init](...values) {
     let hand = this.nodes;
     for (let val of values) {
+      if (val === undefined) continue;
       hand.next = {
         value: val,
         next: null,
       };
       hand = hand.next;
+      this.length++;
     }
   }
   /**
    * 链表头部追加节点
    * @param {any} val 
+   * @returns {number} length
    */
   unshift(val) {
+    if (val === undefined) return this.length;
     const temp = this.nodes.next;
     this.nodes.next = {
       value: val,
       next: temp,
     }
+    return ++this.length;
   }
   /**
    * 链表头部删除节点
@@ -38,14 +61,17 @@ class SingleLinkedList {
     const temp = this.nodes.next;
     if (temp) {
       this.nodes.next = temp.next;
-      return temp?.value
+      this.length--;
+      return temp.value;
     }
+    return undefined;
   }
   /**
    * 链表末尾追加节点
    * @param {any} val 
    */
   push(val) {
+    if (val === undefined) return this.length;
     let hand = this.nodes;
     while (true) {
       if (hand.next === null) {
@@ -53,7 +79,7 @@ class SingleLinkedList {
           value: val,
           next: null
         }
-        break;
+        return ++this.length;
       } else {
         hand = hand.next;
       }
@@ -68,11 +94,13 @@ class SingleLinkedList {
     let before = null;
     while (true) {
       if (hand.next === null) {
-        if (before != null) {
+        if (before !== null) {
           const temp = hand.value;
           before.next = null;
+          this.length--;
           return temp;
         }
+        return undefined;
       }
       before = hand;
       hand = hand.next;
@@ -84,6 +112,7 @@ class SingleLinkedList {
    * @returns {number} -1 0 1 2 3...
    */
   find(val) {
+    if (val === undefined) return [null, -1];
     let hand = this.nodes.next;
     let index = 0;
     while (hand !== null) {
@@ -94,7 +123,7 @@ class SingleLinkedList {
       hand = hand.next;
       index++;
     }
-    return [null, -1]
+    return [null, -1];
   }
   /**
    * 根据index查找节点，下标从0开始
@@ -102,6 +131,10 @@ class SingleLinkedList {
    * @returns {node | null}
    */
   getIndex(index) {
+    if (index >= this.length) {
+      console.error(`linkedList length is ${this.length}，your argument is ${index}`);
+      return null;
+    }
     let hand = this.nodes.next;
     let i = 0;
     while (hand !== null) {
@@ -111,7 +144,7 @@ class SingleLinkedList {
       hand = hand.next;
       i++;
     }
-    return false;
+    return null;
   }
   /**
    * 转换成数组
@@ -142,11 +175,12 @@ class SingleLinkedList {
    * @returns Boolean
    */
   delete(val) {
+    let before = this.nodes;
     let hand = this.nodes.next;
-    let before = hand;
     while (hand != null) {
       if (Object.is(val, hand.value)) {
         before.next = hand.next;
+        this.length--;
         return true;
       }
       before = hand;
@@ -191,3 +225,4 @@ class SingleLinkedList {
 
 // export default SingleLinkedList;
 // TODO: 值不支持 undefined
+// TODO: 根据指针删除指定值
