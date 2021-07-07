@@ -199,6 +199,7 @@ find，filter，map，除了 sort 是一个特例，都接受一个可选的附�
 ## Iterble object 可迭代对象
 本质是设置对象的 Symbol.iterator 属性，该属性返回一个带有 next 的函数，每次迭代时会被自动执行。该函数必须返回 `{done: Boolean, value: any}`。
 Iterable 是实现了 Symbol.iterator 方法的对象，Array-like 是有索引和 length 属性的对象。一个可迭代对象也许不是类数组对象。反之亦然。
+只有实现了可遍历属性 Symbol.interator 的才是可遍历对象，类数组只需 数字下标和length就可以了。这两者都不能通过Array.isArray的校验。
 全局方法 Array.from 可以接受一个可迭代或类数组的值，并从中获取一个“真正的”数组。
 
 因为 String.ptototype.slice 不支持 UTF-16 的字符串，可以自己写一个。

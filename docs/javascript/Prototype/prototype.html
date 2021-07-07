@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  const animal = {
+    _name: '',// 这里不设置 _name 那么 rabbit 上也会多一个 name
+    set name(value) {
+      this._name = value;
+    },
+    get name() {
+      return this._name;
+    },
+    age: 12,
+    sex: 'man',
+  }
+  const rabbit = {
+    __proto__: animal,
+    color: 'white',
+  }
+  rabbit.color = 'white';// 设置在 rabbit 上
+  rabbit.name = 'little white';// 调用 animal 上的方法，设置在了 rabbit上
+
+  for (let key in rabbit) {
+    console.log(key, rabbit.hasOwnProperty(key));
+  }
+  Object.defineProperty(animal, 'sex', {
+    enumerable: false,
+  });
+  console.log('----------');
+  for (let key in rabbit) {
+    console.log(key, rabbit.hasOwnProperty(key));
+  }
+  'sex' in rabbit// false: in 也无能为力
+</script>
+</body>
+</html>

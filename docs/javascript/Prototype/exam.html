@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  let head = {
+    glasses: 1
+  };
+
+  let table = {
+    pen: 3,
+    __propetype__: head,
+  };
+
+  let bed = {
+    sheet: 1,
+    pillow: 2,
+    __propetype__: table,
+  };
+
+  let pockets = {
+    money: 2000,
+    __propetype__: bed,
+  };
+
+  // 我们是从对象还是从原型链获取属性都是没区别的。它们（引擎）会记住在哪里找到的该属性，并在下一次请求中重用它。
+
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  function f() {
+    console.log("Hello!");
+  }
+  Function.prototype.defer = function(ms) {
+    setTimeout(this, ms);
+  }
+
+  f.defer(1000);
+
+  // -------
+
+  function f2(a, b) {
+    alert( a + b );
+  }
+  Function.prototype.defer2 = function(ms) {
+    return 
+  }
+
+  f2.defer2(1000)(1, 2); 
+  // TODO
+</script>
+</body>
+</html>
