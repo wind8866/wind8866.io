@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  "use strict";
+ 
+  const sum = (a) => {
+    return function(b) {
+      return a + b;
+    }
+  }
+  console.log(sum(1)(2))// = 3
+  sum(5)(-1)// = 4
+
+
+  const inBetween = (min, max) => {
+    return function(x) {
+      return x >= min && x <= max;
+    }
+  }
+  const inArray = (arr) => {
+    return function(x) {
+      return arr.some(item => item === x);
+    }
+  }
+  
+  let arr = [1, 2, 3, 4, 5, 6, 7];
+  console.log( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+  console.log( arr.filter(inArray([1, 2, 10])) ); // 1,2
+
+
+  let users = [
+    { name: "John", age: 20, surname: "Johnson" },
+    { name: "Pete", age: 18, surname: "Peterson" },
+    { name: "Ann", age: 19, surname: "Hathaway" }
+  ];
+  const byField = (key) => {
+    return function(a, b) {
+      // 排序必须返回数字 1 0 -1
+      // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description
+      return a[key] > b[key] ? 1 : -1;
+    }
+  }
+
+  users.sort(byField('name'));
+  console.log(JSON.stringify(users));
+  users.sort(byField('age'));
+  console.log(JSON.stringify(users));
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+
+
+## 原型继承
+`rabbit.__proto__ = animal`
+在这儿我们可以说 "animal 是 rabbit 的原型"，或者说 "rabbit 的原型是从 animal 继承而来的"。
+因此，如果 animal 有许多有用的属性和方法，那么它们将自动地变为在 rabbit 中可用。这种属性被称为“继承”。
+
+引用不能形成闭环。如果我们试图在一个闭环中分配 `__proto__`，JavaScript 会抛出错误。
+`__proto__` 的值可以是对象，也可以是 null。而其他的类型都会被忽略。
+
+`__proto__` 与内部的 [[Prototype]] 不一样。`__proto__` 是 [[Prototype]] 的 getter/setter。
+现代编程语言建议我们应该使用函数 Object.getPrototypeOf/Object.setPrototypeOf 来取代 `__proto__` 去 get/set 原型。
+
+设置 rabbit.name，会设置到 rabbit 上，但是如果 animal 上有 name 的 setter 和 getter 就不一样了，会设置到 animal 上。[参考](https://zh.javascript.info/prototype-inheritance#xie-ru-bu-shi-yong-yuan-xing)
+上面使用`rabbit.name = 'little white'` 时，setter 中的 this 指向 rabbit。因为**无论在哪里找到方法：在一个对象还是在原型中。在一个方法调用中，this 始终是点符号 . 前面的对象。**
+
+演示代码在[prototype.html](./prototype.html)
+
+使用 obj.hasOwnPrototype(name) 可以判断 name 是否是在本对象 obj 上
+
+## prototype
+`Animal.prototype` 仅在使用 `new Animal` 创建实例时使用，他为新对象的 `[[Prototype]]` 赋值。
+默认情况下，Animal.prototype 的值中有一个 constroctor 指向 Animal。
+
+```js
+function Animal() {}
+const rabbit = new Animal()
+rabbit.__proto__.constructor === Animal// true
+Animal.prototype === rabbit.__proto__// true
+```
+如果在创建之后，`Animal.prototype` 属性有了变化，那么通过 `new Animal` 创建的新对象也将随之拥有新的对象作为 `[[Prototype]]`，但已经存在的对象将保持旧有的值。
+
+```js
+Animal.prototype.run = function() {
+  console.log('run');
+}
+rabbit.run();// run
+
+Animal.prototype = { type: '生物' };
+rabbit.run();// run 因为 rabbit.__prototype 不改变并且指向的值始终存在
+
+const dog = new Animal();
+console.log(dog.type)
+console.log(dog.run)// 新创建的就没有了
+
+console.dir(dog)
+console.log(Animal.prototype.constructor)// 赋值后 constructor 指向错误，需要重新绑定
+Animal.prototype.constructor = Animal;
+console.log(dog.__proto__.constructor)// dog 也正常了
+```
+注意 prototype 只存在于函数的属性中。
+
+
+## 原生的原型
+```js
+let obj = {};
+alert(obj.__proto__ === Object.prototype); // true
+```
+
+在现代编程中，只有一种情况下允许修改原生原型。那就是 polyfilling。
+
+从原型中借用：obj.join = Array.prototype.join
+
+TODO: 第二题解答

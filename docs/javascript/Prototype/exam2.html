@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  function f() {
+    console.log("Hello!");
+  }
+  Function.prototype.defer = function(ms) {
+    setTimeout(this, ms);
+  }
+
+  f.defer(1000);
+
+  // -------
+
+  function f2(a, b) {
+    console.log( a + b );
+  }
+  Function.prototype.defer2 = function(ms) {
+    // 第一种方法，利用箭头函数
+    // return (a, b) => setTimeout(this, ms, a, b);
+    
+    // 第二种方法，利用绑定
+    const that = this;
+    function temp() {
+      setTimeout(that.bind(that, ...arguments), ms);
+    }
+    return temp;
+  }
+
+  f2.defer2(1000)(1, 2);
+</script>
+</body>
+</html>

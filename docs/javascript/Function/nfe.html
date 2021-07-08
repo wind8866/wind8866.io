@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+function makeCounter() {
+  function counter() {
+    return counter.count++;
+  }
+  counter.set = function(value) {
+    return this.count = value;
+  }
+  counter.decrease = function(value) {
+    return this.count--;
+  }
+  counter.count = 0;
+  return counter;
+}
+let counter = makeCounter();
+console.log(counter());
+console.log(counter());
+console.log(counter.set(12));
+console.log(counter.decrease());
+counter.count = 100
+console.log(counter());
+
+
+{
+  function sum(num) {
+    if (sum.value === undefined) {
+      sum.value = 0;
+      sum.valueOf = function() {
+        const temp = this.value;
+        this.value = 0;
+        return temp;
+      }
+    }
+    sum.value += num;
+    return sum;
+  }
+  console.log(sum(1)(2) == 3)
+  console.log(sum(5)(-1)(2) == 6)
+  console.log(sum(6)(-1)(-2)(-3) == 0)
+  console.log(sum(0)(1)(2)(3)(4)(5) == 15)
+}
+
+{
+  function sum(num) {
+    let currentSum = num;
+    function b(value) {
+      currentSum += value;
+      return b;
+    }
+    
+    b.toString = function() {
+      return currentSum;
+    }
+    return b;
+  }
+  console.log(sum(1)(2) == 3)
+  console.log(sum(5)(-1)(2) == 6)
+  console.log(sum(6)(-1)(-2)(-3) == 0)
+  console.log(sum(0)(1)(2)(3)(4)(5) == 15)
+}
+</script>
+</body>
+</html>

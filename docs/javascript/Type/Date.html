@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  const date = new Date();// Tue Jun 29 2021 22:40:26 GMT+0800 (中国标准时间)
+
+  // YYYY-MM-DD 星期x HH:ss:mm 毫秒数
+  const padStart = (num, digit = 2) => {
+    return num.toString().padStart(digit, '0');
+  }
+  const formatDate = (date) => {
+    const formatDate = `${date.getFullYear()}-${padStart(date.getMonth() + 1)}-${padStart(date.getDate())}`;
+    const formatTime = `${padStart(date.getHours())}:${padStart(date.getMinutes())}:${padStart(date.getSeconds())}`;
+    const formatWeek = `星期${['日', '一', '二', '三', '四', '五', '六'][date.getDay()]}`;
+    const millisecond = padStart(date.getMilliseconds(), 4);
+    return `${formatDate} ${formatWeek} ${formatTime} ${millisecond}`;
+  }
+  const formatUTCDate = (date) => {
+    const formatDate = `${date.getUTCFullYear()}-${padStart(date.getUTCMonth() + 1)}-${padStart(date.getUTCDate())}`;
+    const formatTime = `${padStart(date.getUTCHours())}:${padStart(date.getUTCMinutes())}:${padStart(date.getUTCSeconds())}`
+    const formatWeek = `星期${['日', '一', '二', '三', '四', '五', '六'][date.getUTCDay()]}`;
+    const millisecond = padStart(date.getUTCMilliseconds(), 4);
+    return `${formatDate} ${formatWeek} ${formatTime} ${millisecond}`;
+  }
+  console.log(formatDate(date));
+  console.log(formatUTCDate(date));
+
+  // getYear 非标准
+  // getTimezoneOffset
+  // getTime
+  // 返回 UTC 与本地时区之间的时差，以分钟为单位
+  const offset = date.getTimezoneOffset()
+  console.log(offset, offset / 60);
+  console.log(date.getTime(), +date === Number(date));
+
+  // set 是 7 x 2，少了 setDay
+  // setTime
+  // setYear
+
+  // 可以显示上午下午
+  console.log(date.toLocaleTimeString());// "下午2:24:37"
+
+  // console.log(Date.now())
+
+
+  let tempDate = formatDate(date);
+  tempDate = tempDate.replace(/\s星期.\s/, 'T')
+  tempDate = tempDate.replace(/\s0+/, '.')
+  // tempDate = tempDate.concat('+08:00')
+  console.log(tempDate);
+  const parseDate = Date.parse(tempDate);
+  console.log(parseDate, +date === +parseDate);
+
+  // --------------------
+  {
+    // Feb 20, 2012, 3:12am
+    const date = new Date();
+    date.setFullYear(2012, 1, 20);
+    date.setHours(3, 12, 0)
+    console.log(date, formatDate(date));
+  }
+</script>
+</body>
+</html>
