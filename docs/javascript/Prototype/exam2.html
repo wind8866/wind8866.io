@@ -20,14 +20,21 @@
   // -------
 
   function f2(a, b) {
-    alert( a + b );
+    console.log( a + b );
   }
   Function.prototype.defer2 = function(ms) {
-    return 
+    // 第一种方法，利用箭头函数
+    // return (a, b) => setTimeout(this, ms, a, b);
+    
+    // 第二种方法，利用绑定
+    const that = this;
+    function temp() {
+      setTimeout(that.bind(that, ...arguments), ms);
+    }
+    return temp;
   }
 
-  f2.defer2(1000)(1, 2); 
-  // TODO
+  f2.defer2(1000)(1, 2);
 </script>
 </body>
 </html>

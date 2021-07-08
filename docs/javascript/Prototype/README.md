@@ -19,7 +19,39 @@
 使用 obj.hasOwnPrototype(name) 可以判断 name 是否是在本对象 obj 上
 
 ## prototype
+`Animal.prototype` 仅在使用 `new Animal` 创建实例时使用，他为新对象的 `[[Prototype]]` 赋值。
+默认情况下，Animal.prototype 的值中有一个 constroctor 指向 Animal。
 
+```js
+function Animal() {}
+const rabbit = new Animal()
+rabbit.__proto__.constructor === Animal// true
+Animal.prototype === rabbit.__proto__// true
+```
+如果在创建之后，`Animal.prototype` 属性有了变化，那么通过 `new Animal` 创建的新对象也将随之拥有新的对象作为 `[[Prototype]]`，但已经存在的对象将保持旧有的值。
+
+```js
+Animal.prototype.run = function() {
+  console.log('run');
+}
+rabbit.run();// run
+
+Animal.prototype = { type: '生物' };
+rabbit.run();// run 因为 rabbit.__prototype 不改变并且指向的值始终存在
+
+const dog = new Animal();
+console.log(dog.type)
+console.log(dog.run)// 新创建的就没有了
+
+console.dir(dog)
+console.log(Animal.prototype.constructor)// 赋值后 constructor 指向错误，需要重新绑定
+Animal.prototype.constructor = Animal;
+console.log(dog.__proto__.constructor)// dog 也正常了
+```
+注意 prototype 只存在于函数的属性中。
+
+
+## 原生的原型
 ```js
 let obj = {};
 alert(obj.__proto__ === Object.prototype); // true
