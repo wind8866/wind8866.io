@@ -40,7 +40,7 @@ mode默认为local，即默认模块化，想要非模块化要使用global。�
 
 #### CSS module in Typescript
 使用 @teamsupercell/typings-for-css-modules-loader 可以自动生成 less 的 d.ts 声明，但会生成许多冗余文件，我使用的vscode插件实现的。[参考](https://juejin.cn/post/6844903560056930311)
-webpack loader配置
+使用 loader 每次生成 d.ts 时 webpack 的配置
 ```javascript
 {
   loader: '@teamsupercell/typings-for-css-modules-loader',
@@ -186,7 +186,7 @@ https://github.com/browserslist/browserslist
 ```
 # .browserslistrc
 > 0.5%
-last 2 versions
+last 2 versions 
 Firefox ESR
 not IE 11
 not dead
