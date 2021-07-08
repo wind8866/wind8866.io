@@ -1,0 +1,58 @@
+
+
+## Class 基本语法
+使用传统方式创建的构造函数和类的区别
+- 类会有特殊的 `[[IsClassConstructor]]: true` 标记
+  - 类 toString 会以 class 开头
+  - 必须使用 new 调用
+- 类方法不可枚举
+- 类总是严格模式 "use strict"
+
+类中设置的方法默认在 prototype 上，属性默认在 对象自身上。
+类的方法是箭头函数，那么 this 始终指向该类
+
+[课后习题:1.html](./1.html)
+
+## 类继承
+我们希望在父类方法的基础上进行调整或扩展其功能。我们在我们的方法中做一些事儿，但是在它之前或之后或在过程中会调用父类方法。Class 为此提供了 "super" 关键字。
+super.method(...) 调用父类的方法。
+箭头函数没有 super，如果被访问，它会从外部函数获取。
+继承类的 constructor 必须调用 super(...)，并且 (!) 一定要在使用 this 之前调用。
+派生构造器具有特殊的内部属性 [[ConstructorKind]]:"derived"。这是一个特殊的内部标签。该标签会影响它的 new 行为：
+- 当通过 new 执行一个常规函数时，它将创建一个空对象，并将这个空对象赋值给 this。
+- 但是当继承的 constructor 执行时，它不会执行此操作。它期望父类的 constructor 来完成这项工作。
+因此，派生的 constructor 必须调用 super 才能执行其父类（base）的 constructor，否则 this 指向的那个对象将不会被创建。并且我们会收到一个报错。
+需要知道子类声明与父类相同的属性不会生效，因为 super 会在之后执行，但方法可行
+看代码4，父类 this 的属性值并不会像 `rabbit.prototype = new Animal()` 一样直接添加为子类的原形的属性。
+
+[课后习题:2.html](./2.html)
+[使用 ES5 语法模拟一个类的实现](./3.html)
+
+- [ ] [深入了解原理的难知识](https://zh.javascript.info/class-inheritance#shen-ru-nei-bu-tan-jiu-he-homeobject)
+
+
+## 静态属性和静态方法
+使用 static 创建的静态方法保存在类中，方法中的this指向类本身，而非类的构造函数。
+静态属性和方法是可被继承的。使用 extends 会自动继承。
+[课后习题:4.html](./4.html)
+
+## 问题汇总
+
+- [ ] 类好像没办法成为 Number 一样的转换函数，类只能使用 new 操作符调用
+- [ ] 类中如何创建 prototype 的属性
+
+类中如何创建非 prototype 的方法
+```js
+class Person {
+  constructor() {
+    this.fun2 = function(){}
+  }
+  fun = function(){}
+  fun3() {}
+}
+new Person()
+// fun 和 fun2 都在 this 上，fun3 在原形链上
+```
+
+使用 class 语法，我想让 Rabbit 继承 Animal 的 type 作为属性怎么办？有这种需求吗？（使用super？）
+代码见 [rabbit3](./3.html)

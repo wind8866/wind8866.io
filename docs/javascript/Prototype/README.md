@@ -62,3 +62,29 @@ alert(obj.__proto__ === Object.prototype); // true
 从原型中借用：obj.join = Array.prototype.join
 
 TODO: 第二题解答
+
+## 原型方法，没有 __proto__ 的对象
+
+
+拷贝对象的所有属性
+```js
+Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj)
+```
+
+创建一个没有原型的对象
+```js
+Object.create(null)
+```
+
+`__prototype__`是一个过时的方法。
+请使用下面的API
+
+- `Object.getPrototypeOf(obj)`：获取 obj 的原型
+- `Object.setPrototypeOf(obj, proto)`：设置 obj 的原型
+- `Object.create(proto, [descriptors])`：以 proto 为原型，descriptors 描述为附加值创建一个对象
+
+其他 API
+- Object.getOwnPropertySymbols(obj)
+- Object.getOwnPropertyNames(obj)
+- Reflect.ownKeys(obj)
+- obj.hasOwnProperty(key)

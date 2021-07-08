@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  class Animal {
+    static isAnimal(a, b) {
+      // ...
+    }
+    static version = '1.0.0';
+
+    getType() {
+      return this.type;
+    }
+    type = 'animal';
+  }
+  class Rabbit extends Animal {
+    constructor(color) {
+      super();
+      this.color = color;
+    }
+    getColor() {
+      return this.color;
+    }
+  }
+
+  const littleWhite = new Rabbit('white');
+
+  // Object.getPrototypeOf(littleWhite) === Rabbit.prototype;// true
+  // littleWhite.__proto__ === Rabbit.prototype;// true
+
+  // Rabbit.prototype.__proto__ === Animal.prototype// true
+
+  // // 类继承
+  // Rabbit.__proto__ === Animal// true
+
+  /**
+   * 以上代码使用 ES5 方式近似实现
+   */
+
+  // 类的构造器
+  function Animal2() {
+    this.type = 'animal2';
+  }
+
+  // 类本身的方法
+  Animal2.version = '1.0.0';
+  Object.defineProperty(Animal2, 'isAnimal2', {
+    enumerable: false,
+    writable: true,
+    configurable: true,
+    value: function isAnimal2(a, b) {},
+  });
+
+  // 类的原形方法
+  Object.defineProperty(Animal2.prototype, 'getType', {
+    enumerable: false,
+    writable: true,
+    configurable: true,
+    value: function getType() {
+      return this.type;
+    }
+  });
+
+  // 初始化类
+  const temp = new Animal2();
+  // 子类的构造函数；因为继承，所以复制父类的属性
+  function Rabbit2 (color) {
+    this.color = color;
+    Object.assign(this, temp)
+  }
+
+  // 子类原形的 [[prototype]] 指向父类的原形
+  Object.setPrototypeOf(Rabbit2.prototype, Object.getPrototypeOf(temp));
+
+  // 子类的原形添加方法
+  Object.defineProperty(Rabbit2.prototype, 'getColor', {
+    enumerable: false,
+    writable: true,
+    configurable: true,
+    value: function getColor() {
+      return this.color;
+    }
+  });
+
+  // 将子类的 [[prototype]] 指向父类
+  Object.setPrototypeOf(Rabbit2, Animal2);
+
+  const littleWhite2 = new Rabbit2('white');
+
+  // 原型没有继承过来
+  console.log('littleWhite', littleWhite);
+  console.log('littleWhite2', littleWhite2);
+
+  console.dir(Rabbit);
+  console.dir(Rabbit2);
+
+  // TODO: 
+  // 类的 getColor 有 arguments
+
+  class Animal3 {
+    leg = null;
+    level = 2;
+    type = 'animal';
+    getLevel() {
+      return this.level;
+    }
+  }
+  class Rabbit3 extends Animal3 {
+    constructor() {
+      super();
+      // 如何让 type 消失呢？
+      // type = undefined; 不行，有 key
+      delete this.type;
+    }
+    leg = 4;
+    // super 不能直接取值，但可以调用方法
+    level = super.getLevel() + 1;
+    // type
+    get() {
+      console.log(super.level);
+    }
+  }
+  let rabbit3 = new Rabbit3();
+</script>
+</body>
+</html>

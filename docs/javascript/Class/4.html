@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  class Animal {
+    constructor(name) {
+      this.speed = 0;
+      this.name = name;
+    }
+    run(speed) {
+      this.speed = speed;
+      console.log(`${this.name} runs with speed ${this.speed}.`);
+    }
+    stop() {
+      this.speed = 0;
+      console.log(`${this.name} stands still.`);
+    }
+  }
+
+  let animal = new Animal("My animal");
+
+
+  class Rabbit extends Animal {
+    hide() {
+      console.log(`${this.name} hides!`);
+    }
+    stop() {
+      super.stop(); // 调用父类的 stop
+      this.hide(); // 然后 hide
+    }
+  }
+
+  // 如果 Rabbit 中没有自定义 constructor，那么会自动添加并执行 super()
+  let rabbit = new Rabbit("White Rabbit");
+  console.log(rabbit);
+
+  rabbit.run(5); // White Rabbit runs with speed 5.
+  rabbit.hide(); // White Rabbit hides!
+</script>
+</body>
+</html>
