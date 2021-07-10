@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  // 测试用例
+
+  // 基础类型
+  let arr1 = [
+    null,
+    undefined,
+    '',
+    'aa',
+    false,
+    true,
+    0,
+    NaN,
+    Infinity,
+    1,
+    Symbol('222'),
+    BigInt('242434')
+  ];
+
+  // 引用类型
+  class Animal {}
+  let arr2 = [
+    {},
+    {0: 0, 1: 1, 2: 2, length: 3},
+    new Animal(),
+    new Number(3),
+    [],
+    function c() {},
+    new Date(),
+    new Set(),
+    Promise.resolve(),
+  ]
+
+  // 环境实现
+  let arr3 = [
+    window,
+    document,
+    document.createElement('input'),
+    fetch,
+  ]
+
+  // 各种捣乱
+  let arr4 = [
+    Object.create(null),
+    {
+      constructor: window
+    },
+    // Symbol.hasInstance
+    // Symbol.toStringTag
+  ]
+
+  /**
+   * null 返回 object
+   * 还支持 object 和 function
+   */
+  arr1.forEach(val => {
+    // console.log(typeof val);
+  })
+
+  ;[...arr2].forEach(val => {
+    // console.log(val?.toString?.());
+  })
+
+  const arr2Type = [
+    Object,
+    Object,
+    Animal,
+    Number,
+    Array,
+    Function,
+    Date,
+    Set,
+    Promise,
+  ]
+  arr2.forEach((val, index) => {
+    // console.log(val instanceof arr2Type[index]);
+  })
+
+  const arr3Type = [
+    Window,
+    HTMLDocument,
+    HTMLInputElement,
+    Function,
+  ]
+  arr3.forEach((val, index) => {
+    // console.log(val instanceof arr3Type[index]);
+  })
+
+  ;[
+    ...arr1,
+    ...arr2,
+    ...arr3,
+    ...arr4,
+  ].forEach(x => {
+    console.log(x, Object.prototype.toString.call(x));
+  })
+</script>
+</body>
+</html>

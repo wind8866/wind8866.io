@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>咖啡机</title>
+</head>
+<body>
+<script>
+  /**
+   * 私有：1、2、3
+   * 可写：11、12、13
+   * 继承：
+   */
+  const id = Symbol('id');
+  class CoffeeMachine {
+    // 私有 1
+    // 约定俗成的方式：下划线开头加 getter、setter
+    // 水量
+    _waterAmount = 0;
+    get waterAmount() {
+      return this._waterAmount;
+    }
+    set waterAmount(val) {
+      this._waterAmount = val;
+    }
+
+    // 私有 1 另一种表现
+    // 更传统的方式：约定俗成 + 函数
+    // 咖啡豆数量
+    _coffeeAmount = 0;
+    getCoffeeAmount() {
+      return this._coffeeAmount;
+    }
+    setCoffeeAmount(val) {
+      this._coffeeAmount = val;
+    }
+
+    // 私有 2
+    // 下一代的方式：私有属性
+    // 定时
+    #delay = 0;
+    get delay() {
+      return this.#delay;
+    }
+    set delay(timer) {
+      this.#delay = timer;
+    }
+
+    // 私有3
+    // 使用 Symbol
+    [id] = '144343434321';
+    getId() {
+      return this[id];
+    }
+
+    // 可写 11
+    // 与上面私有的 1、2 类似，但不提供 seter
+
+    // 可写 12
+    // 私有4就不可写
+
+    // 可写 13
+    // 使用 Object.defineProperty 定义 writeable
+  }
+
+  class CoffeeMachine100 extends CoffeeMachine {
+
+  }
+  const myMachie = new CoffeeMachine();
+
+
+  const myMachine100 = new CoffeeMachine();
+  console.log(myMachine100.getCoffeeAmount());
+
+
+</script>
+</body>
+</html>

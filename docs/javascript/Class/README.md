@@ -56,3 +56,47 @@ new Person()
 
 使用 class 语法，我想让 Rabbit 继承 Animal 的 type 作为属性怎么办？有这种需求吗？（使用super？）
 代码见 [rabbit3](./3.html)
+
+## 私有的和受保护的属性和方法
+一个属性可以有许多设定：
+- 私有：外部不可访问
+- 改写：不可修改
+- 继承：是否继承给子类
+
+私有字段与公共字段不会发生冲突。我们可以同时拥有私有的 #waterAmount 和公共的 waterAmount 字段。
+如果一个 class 的使用者想要改变那些本不打算被从外部更改的东西 —— 后果是不可预测的。
+[5.html](./5.html)
+## 扩展内建类
+通常，当一个类扩展另一个类时，静态方法和非静态方法都会被继承。这已经在 静态属性和静态方法 中详细地解释过了。
+但内建类却是一个例外。它们相互间不继承静态方法。
+感觉 `Symbol.species` 只是改变了指向，基本没有用。
+[6.html](./6.html)
+
+## 类检查 instanceof
+Symbol.hasInstance 可以改变 instanceof 的行为，大多数 class 没有 Symbol.hasInstance。在这种情况下，标准的逻辑是：使用 obj instanceOf Class 检查 Class.prototype 是否等于 obj 的原型链中的原型之一。
+
+`obj instanceof Class` 相当于 `Class.prototype.isPrototypeOf(obj)`
+
+终极秘笈，对于 JS 中内置的值，可以使用 `Object.prototype.toString.call(value)` 来判断。
+自己可以使用 Symbol.toStringTag 自定义对象 toString 方法的行为，一般不需要这么做。
+环境中已经有些值设置了该属性，例如
+- window: [object Window]
+- document: [object HTMLDocument]
+- document.createElement('input'): [object HTMLInputElement]
+
+```js
+if (知道值为原始数据类型) {
+  typeof value
+}
+if (原始数据类型, 内建对象) {
+  typeof value && value.toString()
+}
+```
+
+## Mixin
+一些其它编程语言允许多重继承。JavaScript 不支持多重继承，但是可以通过将方法拷贝到原型中来实现 mixin。
+如果 Mixins 意外覆盖了现有类的方法，那么它们可能会成为一个冲突点。因此，通常应该仔细考虑 mixin 的命名方法，以最大程度地降低发生这种冲突的可能性。
+一般使用 `Object.assign(User.prototype, sayHiMixin)` 语法
+
+- [ ] 实现一个 EventMixin
+- [ ] 
