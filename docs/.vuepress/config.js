@@ -52,7 +52,7 @@ module.exports = {
     sidebarDepth: 2,
     nav: [
       { text: 'Blog', link: '/blog/' },
-      { text: '现代JavaScript教程', link: '/javascript/' },
+      { text: '现代JS教程📝', link: '/javascript/' },
       {
         text: 'Other', items: [
           { text: 'ECMAScript 6', link: '/language/japanese/' },
@@ -71,7 +71,7 @@ module.exports = {
           title: '博客',
           collapsable: false,
           children: [
-            ['', 'README.md'],
+            ['', '🏠简介'],
             '恭喜你正式成为一名B站UP主啦.md',
             '开发的可控性与确定性.md',
             'null.md',
@@ -88,11 +88,15 @@ module.exports = {
       ],
       '/javascript/': [
         {
-          title: '现代 JavaScript 教程',
           collapsable: false,
           children: [
-            ['', 'README'],
-            'tree.md',
+            ['', '🏠现代 JavaScript 教程'],
+          ]
+        },
+        {
+          title: 'JavaScript 编程语言',
+          collapsable: false,
+          children: [
             '1.1-Introduce.md',
             '1.2-Base.md',
             '1.3-CodeQuality.md',
@@ -103,7 +107,7 @@ module.exports = {
             '1.8-Prototype.md',
             '1.9-Class.md',
           ]
-        }
+        },
       ]
     }
     // sidebar: {
