@@ -13,9 +13,9 @@ todo grid
 ### align-self
 todo grid
 ### all
-### <an-plus-b>
-### <angle>
-### <angle-percentage>
+### \<an-plus-b\>
+### \<angle\>
+### \<angle-percentage\>
 ### animation
 todo animation
 ### animation-delay
@@ -51,10 +51,10 @@ todo animation
 ### background-position
 ### background-repeat
 ### background-size
-### <basic-shape>
+### \<basic-shape\>
 ### ::before (:before)
 ### bleed (@page)
-### <blend-mode>
+### \<blend-mode\>
 ### block-size
 ### blur()
 ### border
@@ -142,7 +142,7 @@ todo animation
 ### clip
 ### clip-path
 ### cm
-### <color>
+### \<color\>
 ### color
 ### color-adjust
 ### column-count
@@ -159,7 +159,7 @@ todo animation
 ### contain
 ### content
 ### contrast()
-### <counter>
+### \<counter\>
 ### counter-increment
 ### counter-reset
 ### counter-set
@@ -170,21 +170,21 @@ todo animation
 ### ::cue
 ### ::cue-region
 ### cursor
-### <custom-ident>
+### \<custom-ident\>
 ## D
 ### :default
 ### deg
-### <dimension>
+### \<dimension\>
 ### :dir
 ### direction
 ### :disabled
 ### display
-### <display-box>
-### <display-inside>
-### <display-internal>
-### <display-legacy>
-### <display-listitem>
-### <display-outside>
+### \<display-box\>
+### \<display-inside\>
+### \<display-internal\>
+### \<display-legacy\>
+### \<display-listitem\>
+### \<display-outside\>
 ### dpcm
 ### dpi
 ### dppx
@@ -201,14 +201,14 @@ todo animation
 ## F
 ### fallback (@counter-style)
 ### filter
-### <filter-function>
+### \<filter-function\>
 ### :first
 ### :first-child
 ### ::first-letter (:first-letter)
 ### ::first-line (:first-line)
 ### :first-of-type
 ### fit-content()
-### <flex>
+### \<flex\>
 ### flex
 ### flex-basis
 ### flex-direction
@@ -249,13 +249,13 @@ todo animation
 ### font-weight (@font-face)
 ### format()
 ### fr
-### <frequency>
-### <frequency-percentage>
+### \<frequency\>
+### \<frequency-percentage\>
 ### :fullscreen
 ## G
 ### gap
 ### grad
-### <gradient>
+### \<gradient\>
 ### grayscale()
 ### grid
 ### grid-area
@@ -284,8 +284,8 @@ todo animation
 ### hue-rotate()
 ### hyphens
 ## I
-### <ident>
-### <image>
+### \<ident\>
+### \<image\>
 ### image()
 ### image-orientation
 ### image-rendering
@@ -305,7 +305,7 @@ todo animation
 ### inset-inline
 ### inset-inline-end
 ### inset-inline-start
-### <integer>
+### \<integer\>
 ### :invalid
 ### invert()
 ### isolation
@@ -324,8 +324,8 @@ todo animation
 ### :left
 ### left
 ### @left-bottom
-### <length>
-### <length-percentage>
+### \<length\>
+### \<length-percentage\>
 ### letter-spacing
 ### line-break
 ### line-height
@@ -398,7 +398,7 @@ todo animation
 ### :nth-last-child
 ### :nth-last-of-type
 ### :nth-of-type
-### <number>
+### \<number\>
 ## O
 ### object-fit
 ### object-position
@@ -456,7 +456,7 @@ todo animation
 ### paint-order
 ### path()
 ### pc
-### <percentage>
+### \<percentage\>
 ### perspective
 ### perspective()
 ### perspective-origin
@@ -466,7 +466,7 @@ todo animation
 ### ::placeholder
 ### pointer-events
 ### polygon()
-### <position>
+### \<position\>
 ### position
 ### prefix (@counter-style)
 ### pt
@@ -478,7 +478,7 @@ todo animation
 ### rad
 ### radial-gradient()
 ### range (@counter-style)
-### <ratio>
+### \<ratio\>
 ### :read-only
 ### :read-write
 ### rect()
@@ -488,7 +488,7 @@ todo animation
 ### repeating-radial-gradient()
 ### :required
 ### resize
-### <resolution>
+### \<resolution\>
 ### revert
 ### rgb()
 ### rgba()
@@ -544,7 +544,7 @@ todo animation
 ### ::selection
 ### selector()
 ### sepia()
-### <shape>
+### \<shape\>
 ### shape-image-threshold
 ### shape-margin
 ### shape-outside
@@ -556,7 +556,7 @@ todo animation
 ### speak-as (@counter-style)
 ### src (@font-face)
 ### steps()
-### <string>
+### \<string\>
 ### @styleset
 ### styleset()
 ### @stylistic
@@ -597,15 +597,15 @@ todo animation
 ### text-transform
 ### text-underline-offset
 ### text-underline-position
-### <time>
-### <time-percentage>
-### <timing-function>
+### \<time\>
+### \<time-percentage\>
+### \<timing-function\>
 ### top
 ### @top-center
 ### touch-action
 ### transform
 ### transform-box
-### <transform-function>
+### \<transform-function\>
 ### transform-origin
 ### transform-style
 ### transition
@@ -624,7 +624,7 @@ todo animation
 ### unicode-bidi
 ### unicode-range (@font-face)
 ### unset
-### <url>
+### \<url\>
 ### url()
 ### user-zoom (@viewport)
 ## V

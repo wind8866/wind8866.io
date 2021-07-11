@@ -16,3 +16,9 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
 
 整合所有笔记
+
+TODO:
+- [ ] 代码块没有显示行号
+- [ ] 打包部署
+- [ ] PDF 文档没有展示
+- [ ] 使用 serverless 部署到腾讯云
