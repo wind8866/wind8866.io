@@ -52,9 +52,9 @@ module.exports = {
     sidebarDepth: 2,
     nav: [
       { text: 'Blog', link: '/blog/' },
+      { text: '现代JavaScript教程', link: '/javascript/' },
       {
-        text: 'Note', items: [
-          { text: '现代JavaScript教程', link: '/javascript' },
+        text: 'Other', items: [
           { text: 'ECMAScript 6', link: '/language/japanese/' },
 
           // { text: 'React', link: '/react' },
@@ -71,18 +71,37 @@ module.exports = {
           title: '博客',
           collapsable: false,
           children: [
+            ['', 'README.md'],
+            '恭喜你正式成为一名B站UP主啦.md',
+            '开发的可控性与确定性.md',
+            'null.md',
+            'debug-Front-end-engineering.md',
+            'api-1.md',
+            'macOS-JAVA-dev.md',
+            'front-end-tool.md',
+            '2018-career-planning.md',
+            'zhihu-macOS-reinstall.md',
+            'zepto-source-code.md',
+            'aboutme.md',
+          ]
+        }
+      ],
+      '/javascript/': [
+        {
+          title: '现代 JavaScript 教程',
+          collapsable: false,
+          children: [
             ['', 'README'],
-            '恭喜你正式成为一名B站UP主啦',
-            '开发的可控性与确定性',
-            'null',
-            'debug-Front-end-engineering',
-            'api-1',
-            'macOS-JAVA-dev',
-            'front-end-tool',
-            '2018-career-planning',
-            'zhihu-macOS-reinstall',
-            'zepto-source-code',
-            'aboutme',
+            'tree.md',
+            '1.1-Introduce.md',
+            '1.2-Base.md',
+            '1.3-CodeQuality.md',
+            '1.4-Object.md',
+            '1.5-Type.md',
+            '1.6-Function.md',
+            '1.7-Property.md',
+            '1.8-Prototype.md',
+            '1.9-Class.md',
           ]
         }
       ]

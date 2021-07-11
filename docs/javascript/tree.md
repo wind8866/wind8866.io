@@ -1,6 +1,16 @@
+---
+title: 《现代 JavaScript 教程》
+date: 2021-04-15 18:30:30
+updated: 2021-05-14 18:30:30
+tags: javascript
+---
+迄今为止我见过的最好的 JS 教程！！！
 
+<https://zh.javascript.info/>
 
+---
 ## code 
+用在官方文档首页，抓取数据
 ```javascript
 {
   const tree = []
@@ -31,6 +41,7 @@
 👀复习
 ⏳下一步
 
+## 待办记录
 
 - 简介
   - [x] 📖📝[JavaScript 简介](https://zh.javascript.info/intro)
@@ -226,7 +237,7 @@
   - [ ] [量词 `+,*,?` 和 `{n}`](https://zh.javascript.info/regexp-quantifiers)
   - [ ] [贪婪量词和惰性量词](https://zh.javascript.info/regexp-greedy-and-lazy)
   - [ ] [捕获组](https://zh.javascript.info/regexp-groups)
-  - [ ] [模式中的反向引用：\N 和 \k<name>](https://zh.javascript.info/regexp-backreferences)
+  - [ ] [模式中的反向引用：\N 和 \k\<name\>](https://zh.javascript.info/regexp-backreferences)
   - [ ] [选择（OR）|](https://zh.javascript.info/regexp-alternation)
   - [ ] [前瞻断言与后瞻断言](https://zh.javascript.info/regexp-lookahead-lookbehind)
   - [ ] [灾难性回溯](https://zh.javascript.info/regexp-catastrophic-backtracking)
