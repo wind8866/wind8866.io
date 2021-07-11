@@ -1,7 +1,7 @@
 ---
 title: 恭喜你正式成为一名B站UP主啦
 date: 2020-05-10 10:13:14
-updated: 2020-05-10 10:13:14
+updated: 2021-07-12 11:28:14
 tags: 视频,艺术,Vlog
 comments:
 ---
@@ -12,5 +12,11 @@ comments:
 
 * [这也是樱花吗？](https://www.bilibili.com/video/BV1Eg4y167Zf)
 * [快乐](https://www.bilibili.com/video/BV1bz411q7KF)
+
+---
+> *updated: 2021-07-12 11:28:14*
+
+抖音号：wind_8866
+![抖音码](../blog/source/douyin.jpg)
 
 <!--more-->

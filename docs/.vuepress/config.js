@@ -42,44 +42,68 @@ const es6Sidebar = [
   }
 ];
 
-const blogSidebar = [
-  '2018-career-planning',
-  'macOS-JAVA-dev',
-  'README',
-  'null',
-  'aboutme',
-  'api-1',
-  'zepto-source-code',
-  'debug-Front-end-engineering',
-  'zhihu-macOS-reinstall',
-  'four-ways-of-writing-arrow-function',
-  '恭喜你正式成为一名B站UP主啦',
-  'front-end-tool',
-  '开发的可控性与确定性',
-]
-
 module.exports = {
   title: 'Wind',
   description: '起风了的笔记',
   themeConfig: {
     // logo: '/assets/img/logo.png',
-    displayAllHeaders: true,
+    sidebar: 'auto',
+    collapsable: false,
+    sidebarDepth: 2,
     nav: [
       { text: 'Blog', link: '/blog/' },
-      { text: 'react', link: '/react/' },
-      { text: 'es6', link: '/es6/' },
-      { text: 'github', link: 'https://github.com/wind8866' },
+      {
+        text: 'Note', items: [
+          { text: '现代JavaScript教程', link: '/javascript' },
+          { text: 'ECMAScript 6', link: '/language/japanese/' },
+
+          // { text: 'React', link: '/react' },
+          // { text: 'TypeScript', link: '/ts' },
+          // { text: 'CSS', link: '/css' },
+          // { text: 'ENV', link: '/env' },
+        ]
+      },
+      { text: 'GitHub', link: 'https://github.com/wind8866' },
     ],
     sidebar: {
-      '/react/': [
-        '',
-        'API',
-        'Hooks',
-        'TODO',
-      ],
-      '/es6/': es6Sidebar,
-      '/blog/': blogSidebar,
-    },
-    lastUpdated: 'Last Updated',
+      '/blog/': [
+        {
+          title: '博客',
+          collapsable: false,
+          children: [
+            ['', 'README'],
+            '恭喜你正式成为一名B站UP主啦',
+            '开发的可控性与确定性',
+            'null',
+            'debug-Front-end-engineering',
+            'api-1',
+            'macOS-JAVA-dev',
+            'front-end-tool',
+            '2018-career-planning',
+            'zhihu-macOS-reinstall',
+            'zepto-source-code',
+            'aboutme',
+          ]
+        }
+      ]
+    }
+    // sidebar: {
+    //   '/react/': [
+    //     '',
+    //     'API',
+    //     'Hooks',
+    //     'TODO',
+    //   ],
+    //   '/es6/': es6Sidebar,
+    //   '/blog/': blogSidebar,
+    // },
+    // lastUpdated: 'Last Updated',
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@source': 'docs/blog/source'
+      }
+    }
   }
 }

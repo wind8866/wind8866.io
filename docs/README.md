@@ -2,7 +2,7 @@
 home: true
 heroImage: null
 heroText: 起风了
-tagline: 纵有疾风起，人生不言弃
+tagline: 风之所往，心之所向
 actionText: Go
 actionLink: /blog/
 features:
