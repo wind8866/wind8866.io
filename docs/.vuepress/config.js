@@ -10,16 +10,16 @@ module.exports = {
     nav: [
       { text: 'Blog', link: '/blog/' },
       { text: '现代JS教程📝', link: '/javascript/' },
-      {
-        text: 'Other', items: [
-          { text: 'ECMAScript 6', link: '/language/japanese/' },
+      // {
+      //   text: 'Other', items: [
+      //     { text: 'ECMAScript 6', link: '/language/japanese/' },
 
-          // { text: 'React', link: '/react' },
-          // { text: 'TypeScript', link: '/ts' },
-          // { text: 'CSS', link: '/css' },
-          // { text: 'ENV', link: '/env' },
-        ]
-      },
+      //     // { text: 'React', link: '/react' },
+      //     // { text: 'TypeScript', link: '/ts' },
+      //     // { text: 'CSS', link: '/css' },
+      //     // { text: 'ENV', link: '/env' },
+      //   ]
+      // },
       { text: 'GitHub', link: 'https://github.com/wind8866' },
     ],
     sidebar: {

@@ -16,4 +16,4 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
 
 # wind8866.io
-我的博客
+访问：[我的博客](https://wind8866.github.io/)
