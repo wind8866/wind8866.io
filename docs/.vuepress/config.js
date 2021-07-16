@@ -1,6 +1,11 @@
 module.exports = {
   title: 'Wind',
   description: '起风了的个人博客与学习笔记',
+  markdown: {
+    extendMarkdown: md => {
+      md.set({ breaks: true }) //将段落中的 '\n' 转换为 <br>
+    }
+  },
   themeConfig: {
     // logo: '/assets/img/logo.png',
     sidebar: 'auto',// 
