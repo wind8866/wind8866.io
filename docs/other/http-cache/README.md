@@ -19,12 +19,13 @@
 
 ## 协商缓存阶段
 **服务端响应**
-`ETag: <etag_value>`：对文件的散列运算
+`ETag: <etag_value>`：对文件的散列运算，优先级更高
 `Last-Modified: <Date>`: 最后一次修改时间
 
 **客户端请求**
 `If-None-Match: <etag_value>`：本地文件得到的散列运算值
-`If-Moified-Since: <Date>`：本地文件得到的最后一次修改时间
+`If-Modified-Since: <Date>`：本地文件得到的最后一次修改时间
+
 
 上面的`<Date>`是我为了笔记排版`<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT`的缩写
 
@@ -32,8 +33,14 @@
 客户端使用之前服务端的响应值发送给服务端问一下这个资源是否过期，过期则携带新的`ETag` 与 `Last-Modified`和文件返回给客户端。如果没改，则返回304状态码告诉客户端继续使用。
 
 
+--- 
+文章参考
+- [http缓存总结及前后端测试](https://juejin.cn/post/6861528185742295048)
+- [缓存详解](https://juejin.cn/post/6844903556474994695#heading-26)
+
 ## TODD
 - [ ] 之前遇到过使用nginx作为前端静态资源服务器，但是本地浏览器会缓存 index.html，今天测试没有缓存，使用nginx复现该问题
-- [ ] 如过服务端设置了`Cache-Control no-cache, must-revalidate, proxy-revalidate, max-age=0`，则不会进入启发式缓存阶段，强制缓存阶段呢？待验证
+- [ ] 如过服务端设置了`Cache-Control: no-cache, must-revalidate, proxy-revalidate, max-age=0`，则不会进入启发式缓存阶段，强制缓存阶段呢？待验证
+- [ ] [MDN HTTP 缓存](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching)
 
 
