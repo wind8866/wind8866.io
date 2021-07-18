@@ -1,4 +1,8 @@
 # HTTP 缓存
+
+## 运行
+`node main.js`启动验证
+
 ## 强制缓存阶段
 `Expires: <Date>`：缓存设置过期的绝对时间 HTTP1.0，服务器可能和客户端时间有偏差
 `Cache-Control: max-age=2000`：缓存过期的相对时间，优先级更高，单位秒 HTTP1.1优先级更高
