@@ -29,5 +29,7 @@
 
 
 ## TODD
+- [ ] 之前遇到过使用nginx作为前端静态资源服务器，但是本地浏览器会缓存 index.html，今天测试没有缓存，使用nginx复现该问题
 - [ ] 如过服务端设置了`Cache-Control no-cache, must-revalidate, proxy-revalidate, max-age=0`，则不会进入启发式缓存阶段，强制缓存阶段呢？待验证
+
 
