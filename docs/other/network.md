@@ -24,6 +24,7 @@
 - [ ] fetch 与 xmlHttpRequest 的区别
 - [ ] 性能优化网络部分
 - [ ] 如何看懂浏览器控制台的 Network，进行性能分析与优化？
+- [ ] WebSocket
 
 ---
 
